@@ -51,7 +51,7 @@
         android:inputType="textPassword"
         android:autofillHints="@string/login_password_hint"
         android:hint="@string/login_password_hint"
-        android:textColorHint="#fffffff"
+        android:textColorHint="#ffffff"
         android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
