@@ -17,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 import eu.ase.damapp.fragment.HomeFragment;
+import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
 
 public class MainActivity extends AppCompatActivity {
@@ -63,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.nav_home) {
                     currentFragment = createHomeFragment();
+                }
+                else if(menuItem.getItemId() == R.id.nav_questions){
+                    currentFragment = new QuestionsFragment();
                 }
                 openFragment();
                 drawerLayout.closeDrawer(GravityCompat.START);
