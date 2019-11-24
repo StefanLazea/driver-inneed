@@ -4,20 +4,22 @@
             "question": "Ce se intampla cand masina scoate fum albastru?",
             "img": "path",
             "answer": {
-                "raspuns 1": "Consuma ulei",
-                "raspuns 2": "fjauohdasda",
-                "raspuns 3": "dasdasdadas",
-                "raspuns 4": "dsajoduahsda"
+                "answer 1": "Consuma ulei",
+                "answer 2": "fjauohdasda",
+                "answer 3": "dasdasdadas",
+                "answer 4": "dsajoduahsda",
+                "correct": "Consuma ulei"
             }
         },
         {
             "question": "Cand masina nu poate circula pe drumurile publice?",
             "img": "path",
             "answer": {
-                "raspuns 1": "Cand exista defectiuni la sistemul de virare",
-                "raspuns 2": "fjauohdasda",
-                "raspuns 3": "dasdasdadas",
-                "raspuns 4": "dsajoduahsda"
+                "answer 1": "Cand exista defectiuni la sistemul de virare",
+                "answer 2": "fjauohdasda",
+                "answer 3": "dasdasdadas",
+                "answer 4": "dsajoduahsda",
+                "correct": "Cand exista defectiuni la sistemul de virare"
             }
         }
     ],
@@ -26,10 +28,11 @@
             "question": "Ce reprezinta semnul?",
             "img": "path",
             "answer": {
-                "raspuns 1": "Cedeaza trecerea",
-                "raspuns 2": "fjauohdasda",
-                "raspuns 3": "dasdasdadas",
-                "raspuns 4": "dsajoduahsda"
+                "answer 1": "Cedeaza trecerea",
+                "answer 2": "fjauohdasda",
+                "answer 3": "dasdasdadas",
+                "answer 4": "dsajoduahsda",
+                "correct": "Cedeaza trecerea"
             }
         }
     ],
@@ -38,10 +41,11 @@
             "question": "Cand se poate suspenda dreptul de circulatie?",
             "img": "path",
             "answer": {
-                "raspuns 1": "Cand bal bala",
-                "raspuns 2": "fjauohdasda",
-                "raspuns 3": "dasdasdadas",
-                "raspuns 4": "dsajoduahsda"
+                "answer 1": "Cand bal bala",
+                "answer 2": "fjauohdasda",
+                "answer 3": "dasdasdadas",
+                "answer 4": "dsajoduahsda",
+                "correct": "Cand bal bala"
             }
         }
     ]
