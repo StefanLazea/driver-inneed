@@ -33,6 +33,7 @@ public class HttpManager extends AsyncTask<String, Void, String> {
             while((line = bufferedReader.readLine())!=null){
                 result.append(line);
             }
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
