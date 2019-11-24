@@ -30,17 +30,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initCategories();
+        configNavigation();
         initComponents();
+        initCategories();
+        openDefaultFragment(savedInstanceState);
     }
 
-    private void initCategories(){
-        categories.add(new Category("Mecanica1", (float)5));
-        categories.add(new Category("Mecanica2", (float)3));
-        categories.add(new Category("Contraventii", (float)2));
-    }
-
-    private void initComponents() {
+    private void configNavigation() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -54,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
 
+    }
+
+    private void openDefaultFragment(Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            currentFragment = createHomeFragment();
+            openFragment();
+            navigationView.setCheckedItem(R.id.nav_home);
+        }
+    }
+
+    private void initCategories(){
+        categories.add(new Category("Mecanica1", (float)5));
+        categories.add(new Category("Mecanica2", (float)3));
+        categories.add(new Category("Contraventii", (float)2));
+
+        if(currentFragment instanceof HomeFragment){
+            ((HomeFragment)currentFragment).notifyInternal();
+        }
+    }
+
+    private void initComponents() {
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener());
     }

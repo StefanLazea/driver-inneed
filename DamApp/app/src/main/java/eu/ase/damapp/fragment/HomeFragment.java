@@ -29,6 +29,11 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
+    public void notifyInternal(){
+        CategoryAdapter categoryAdapter = (CategoryAdapter) lvCategories.getAdapter();
+        categoryAdapter.notifyDataSetChanged();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -36,7 +41,6 @@ public class HomeFragment extends Fragment {
     ) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         initComponents(view);
-        Toast.makeText(getContext(), "sunt in fragment", Toast.LENGTH_LONG).show();
         return view;
     }
 
@@ -45,7 +49,7 @@ public class HomeFragment extends Fragment {
 
         if(getArguments()!=null){
             categories = getArguments().getParcelableArrayList(CATEGORY_KEY);
-//            Toast.makeText(getContext(), categories.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), categories.toString(), Toast.LENGTH_LONG).show();
         }
 
         if(getContext() != null){
