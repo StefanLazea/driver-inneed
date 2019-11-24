@@ -19,7 +19,7 @@ public class HttpManager extends AsyncTask<String, Void, String> {
     private BufferedReader bufferedReader;
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected String doInBackground(String ...strings) {
         StringBuilder result = new StringBuilder();
 
         try {

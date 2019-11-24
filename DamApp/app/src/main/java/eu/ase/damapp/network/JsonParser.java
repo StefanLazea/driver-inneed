@@ -22,6 +22,7 @@ public class JsonParser {
             List<Item> tickets = getItemListFromJson(jsonObject.getJSONArray("contraventii"));
 
             return new HttpResponse(mechanics, signs, tickets);
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
