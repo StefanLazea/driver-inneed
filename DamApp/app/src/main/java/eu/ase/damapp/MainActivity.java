@@ -2,7 +2,6 @@ package eu.ase.damapp;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -11,11 +10,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
+import eu.ase.damapp.fragment.FormStudentFragment;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
@@ -84,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else if(menuItem.getItemId() == R.id.nav_questions){
                     currentFragment = new QuestionsFragment();
+                }
+                else if(menuItem.getItemId() == R.id.nav_student){
+                    currentFragment = new FormStudentFragment();
                 }
                 openFragment();
                 drawerLayout.closeDrawer(GravityCompat.START);

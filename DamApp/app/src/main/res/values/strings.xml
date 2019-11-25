@@ -38,4 +38,8 @@
     <string name="lv_empty_resource">-</string>
     <string name="menu_questions">Questions</string>
     <string name="parser_mechanics">mecanica</string>
+    <string name="questions_btn_sign">Signs</string>
+    <string name="questions_btn_mechanics">Mechanics</string>
+    <string name="questions_btn_tickets">Tickets</string>
+    <string name="form_students_menu">About you</string>
 </resources>
