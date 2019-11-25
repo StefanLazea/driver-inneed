@@ -42,4 +42,5 @@
     <string name="questions_btn_mechanics">Mechanics</string>
     <string name="questions_btn_tickets">Tickets</string>
     <string name="form_students_menu">About you</string>
+    <string name="form_school_name">Nume scoala</string>
 </resources>
