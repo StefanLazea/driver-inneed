@@ -26,21 +26,30 @@
     <string name="login_logo">Login logo</string>
     <string name="login_password_hint">Password</string>
     <string name="login_button">Login</string>
-    <string name="login_error_empty_username">Empty username field</string>
-    <string name="login_empty_password">Cannot be empty</string>
-    <string name="login_invalid_username">User invalid</string>
-    <string name="login_invalid_password">Invalid Password</string>
+    <string name="login_error_empty_username">Username gol</string>
+    <string name="login_empty_password">Campul nu poate fi gol</string>
+    <string name="login_invalid_username">User gresit</string>
+    <string name="login_invalid_password">Parola incorecta</string>
     <string name="login_message_success">V-ati logat cu succes!</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="lv_row_icon_description">Icon</string>
     <string name="lv_empty_resource">-</string>
-    <string name="menu_questions">Questions</string>
+    <string name="menu_questions">Intrebari examen</string>
     <string name="parser_mechanics">mecanica</string>
-    <string name="questions_btn_sign">Signs</string>
-    <string name="questions_btn_mechanics">Mechanics</string>
-    <string name="questions_btn_tickets">Tickets</string>
-    <string name="form_students_menu">About you</string>
+    <string name="questions_btn_sign">Semne</string>
+    <string name="questions_btn_mechanics">Mecanica</string>
+    <string name="questions_btn_tickets">Contraventii</string>
+    <string name="form_students_menu">Despre</string>
     <string name="form_school_name">Nume scoala</string>
+    <string name="ask_fab_description">Adauga o intrebare despre examen</string>
+    <string name="ask_tv_question">Intrebare:</string>
+    <string name="ask_tv_category">Categorie</string>
+    <string name="ask_button_send">Trimite</string>
+
+    <string-array name="form_licence_options">
+        <item>categoria A</item>
+        <item>categoria B</item>
+        <item>categoria C</item>
+        <item>categoria CE</item>
+        <item>categoria D</item>
+    </string-array>
 </resources>

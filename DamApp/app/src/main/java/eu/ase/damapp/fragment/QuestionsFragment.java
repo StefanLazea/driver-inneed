@@ -53,9 +53,6 @@ public class QuestionsFragment extends Fragment {
                 httpResponse = JsonParser.parseJson(s);
                 if (httpResponse != null) {
                     selectedResponse.addAll(httpResponse.getMechanics());
-                    ArrayAdapter<Item> adapter = (ArrayAdapter<Item>)
-                            listViewQuestions.getAdapter();
-                    adapter.notifyDataSetChanged();
                     Toast.makeText(getContext(), httpResponse.getMechanics().toString(), Toast.LENGTH_LONG).show();
                 }
             }
@@ -82,7 +79,6 @@ public class QuestionsFragment extends Fragment {
             public void onClick(View view) {
                 if (httpResponse != null && httpResponse
                         .getMechanics() != null) {
-                    //adaugare pe listview
                     unSelectedButtons();
                     selectButtonColor(btnMechanics);
                     selectResponse(httpResponse.getMechanics());
@@ -134,7 +130,7 @@ public class QuestionsFragment extends Fragment {
     }
 
     private void selectButtonColor(Button button) {
-        button.setBackgroundColor(Color.GREEN);
+        button.setBackgroundColor(Color.BLUE);
     }
 
 
