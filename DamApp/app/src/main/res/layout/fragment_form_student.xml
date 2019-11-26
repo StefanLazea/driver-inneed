@@ -11,7 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="1dp"
+        android:layout_marginBottom="675dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -23,53 +26,59 @@
             android:hint="@string/form_school_name" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Spinner
-        android:id="@+id/form_spinner_licence_category"
-        android:layout_width="300dp"
+    <TextView
+        android:id="@+id/form_category_label"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="43dp"
+        android:layout_marginEnd="336dp"
+        android:layout_marginBottom="613dp"
+        android:text="@string/ask_tv_category"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/form_ti_school" />
 
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginBottom="612dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/form_category_label"
+        app:layout_constraintTop_toBottomOf="@+id/form_ti_school" />
+
     <TextView
-        android:id="@+id/form_tv_date_practical"
+        android:id="@+id/form_tv_date_theoretic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="20dp"
-        android:text="Data examen practic"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="262dp"
+        android:layout_marginBottom="570dp"
+        android:text="Data examen teoretic"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_tv_date_theoretical" />
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
     <TextView
         android:id="@+id/form_tv_date_theoretical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="272dp"
-        android:text="Data examen teoretic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_spinner_licence_category" />
-
-    <TextView
-        android:id="@+id/form_tv_licence_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="40dp"
-        android:text="Categoria"
-        app:layout_constraintEnd_toStartOf="@+id/form_spinner_licence_category"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_ti_school" />
+        android:layout_marginBottom="569dp"
+        android:text="Apasati pentru a selecta data"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/form_tv_date_theoretic"
+        app:layout_constraintTop_toBottomOf="@+id/spinner" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,7 @@ package eu.ase.damapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,7 +16,7 @@ public class AskActivity extends AppCompatActivity {
     EditText etQuestion;
     Spinner spinner;
     Button btnSend;
-
+    //todo database storage of this questions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,8 @@ public class AskActivity extends AppCompatActivity {
                         "Ati trimis cu succes intrebarea",
                         Toast.LENGTH_LONG
                 ).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
 
