@@ -95,14 +95,18 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 if (menuItem.getItemId() == R.id.nav_home) {
                     currentFragment = createHomeFragment();
+                    openFragment();
+
                 }
                 else if(menuItem.getItemId() == R.id.nav_questions){
                     currentFragment = new QuestionsFragment();
+                    openFragment();
+
                 }
-                else if(menuItem.getItemId() == R.id.nav_student){
-                    currentFragment = new FormStudentFragment();
+                else if(menuItem.getItemId() == R.id.nav_form){
+                    Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                    startActivity(intent);
                 }
-                openFragment();
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
