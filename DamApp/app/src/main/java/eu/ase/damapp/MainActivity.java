@@ -1,7 +1,9 @@
 package eu.ase.damapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -13,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ import eu.ase.damapp.util.Category;
 
 public class MainActivity extends AppCompatActivity {
     NavigationView navigationView;
+    FloatingActionButton fabAskQuestion;
     DrawerLayout drawerLayout;
     Fragment currentFragment;
     ArrayList<Category> categories = new ArrayList<>();
@@ -73,6 +77,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        fabAskQuestion = findViewById(R.id.main_fab_add_question);
+        fabAskQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), AskActivity.class);
+                startActivity(intent);
+            }
+        });
         navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(navigationItemSelectedListener());
     }

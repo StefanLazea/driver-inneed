@@ -44,6 +44,14 @@
     <string name="ask_tv_question">Intrebare:</string>
     <string name="ask_tv_category">Categorie</string>
     <string name="ask_button_send">Trimite</string>
+    <string name="ask_ti_question">Precizati intrebarea</string>
+
+    <string-array name="quiz_questions_categories">
+        <item>Mecanica</item>
+        <item>Semne rutiere</item>
+        <item>Contraventii</item>
+        <item>alta categorie...</item>
+    </string-array>
 
     <string-array name="form_licence_options">
         <item>categoria A</item>
