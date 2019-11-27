@@ -10,16 +10,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String pass = "test123123";
-    private String user = "stefan";
+    private String pass = String.valueOf(R.string.login_pass);
+    private String user = String.valueOf(R.string.login_user);
 
     EditText editTextUsername;
     EditText editTextPass;
     Button buttonLogin;
+    TextView tvWithoutAccount;
 
     Intent intent;
     @Override
@@ -69,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.login_input_username);
         editTextPass = findViewById(R.id.login_input_password);
         buttonLogin = findViewById(R.id.login_button);
+        tvWithoutAccount = findViewById(R.id.login_tv_without_account);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +83,14 @@ public class LoginActivity extends AppCompatActivity {
                     intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        tvWithoutAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

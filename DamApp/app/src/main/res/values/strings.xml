@@ -45,6 +45,11 @@
     <string name="ask_tv_category">Categorie</string>
     <string name="ask_button_send">Trimite</string>
     <string name="ask_ti_question">Precizati intrebarea</string>
+    <string name="login_tv_without_account">Continua fara cont</string>
+
+
+    <string name="login_user">stefan</string>
+    <string name="login_pass">test123123</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>
@@ -60,4 +65,5 @@
         <item>categoria CE</item>
         <item>categoria D</item>
     </string-array>
+
 </resources>
