@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private String pass = String.valueOf(R.string.login_pass);
-    private String user = String.valueOf(R.string.login_user);
+    private String pass = "test123123";
+    private String user = "stefan";
 
     EditText editTextUsername;
     EditText editTextPass;

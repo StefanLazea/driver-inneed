@@ -7,7 +7,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.text.Normalizer;
@@ -18,6 +20,7 @@ public class FormActivity extends AppCompatActivity {
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private Calendar timeNow;
     private int year, day, month;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,13 @@ public class FormActivity extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
+
+        spinner = findViewById(R.id.form_spinner);
+        ArrayAdapter<CharSequence> licenceCategories =
+                ArrayAdapter.createFromResource(getApplicationContext(),
+                        R.array.form_licence_options,
+                        R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(licenceCategories);
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
