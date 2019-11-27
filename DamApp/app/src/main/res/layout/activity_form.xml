@@ -31,12 +31,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="163dp"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="160dp"
         android:text="@string/menu_send"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/form_rg_sex" />
 
     <Spinner
         android:id="@+id/form_spinner"
@@ -117,13 +117,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_date_exam_practical">
+        app:layout_constraintTop_toBottomOf="@+id/form_sex_label">
 
         <RadioButton
             android:id="@+id/form_rb_masculin"
@@ -144,9 +144,24 @@
         android:id="@+id/form_check_school"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="254dp"
         android:text="Am inceput scoala"
-        app:layout_constraintTop_toBottomOf="@+id/form_spinner"
-        tools:layout_editor_absoluteX="10dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_spinner" />
+
+    <TextView
+        android:id="@+id/form_sex_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="378dp"
+        android:text="Sex:"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/form_date_exam_practical_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
