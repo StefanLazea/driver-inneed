@@ -8,6 +8,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import java.util.Calendar;
 
 public class FormActivity extends AppCompatActivity {
     private TextView form_tv_date_theoretical;
+    private TextView form_tv_date_practical;
+    private Button btnSend;
     private DatePickerDialog.OnDateSetListener onDateSetListener;
     private Calendar timeNow;
     private int year, day, month;
