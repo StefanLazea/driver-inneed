@@ -69,31 +69,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="271dp"
         android:text="Data examen teoretic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/form_check_school" />
 
     <TextView
         android:id="@+id/form_tv_date_theoretical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="84dp"
         android:text="Apasa pentru adaugare"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/form_tv_theoretical_label"
-        app:layout_constraintTop_toBottomOf="@+id/form_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/form_check_school" />
 
     <TextView
         android:id="@+id/form_date_exam_practical_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="7dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="276dp"
         android:text="Data examen practic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="46dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="65dp"
         android:text="Apasa pentru alegere data"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,13 +117,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/form_date_exam_practical" >
+        app:layout_constraintTop_toBottomOf="@+id/form_date_exam_practical">
 
         <RadioButton
             android:id="@+id/form_rb_masculin"
@@ -139,5 +139,14 @@
             android:layout_weight="1"
             android:text="Feminin" />
     </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/form_check_school"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Am inceput scoala"
+        app:layout_constraintTop_toBottomOf="@+id/form_spinner"
+        tools:layout_editor_absoluteX="10dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
