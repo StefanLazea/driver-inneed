@@ -12,15 +12,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
 
-import eu.ase.damapp.fragment.FormStudentFragment;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
