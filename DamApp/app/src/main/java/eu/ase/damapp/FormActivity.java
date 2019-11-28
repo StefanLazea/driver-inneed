@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
+import java.util.Date;
 
 import eu.ase.damapp.util.Form;
 
@@ -42,7 +43,6 @@ public class FormActivity extends AppCompatActivity {
         setContentView(R.layout.activity_form);
         initAttributes();
         initComponents();
-
     }
 
     private void initAttributes() {
@@ -60,19 +60,7 @@ public class FormActivity extends AppCompatActivity {
         month = timeNow.get(Calendar.MONTH);
         day = timeNow.get(Calendar.DAY_OF_MONTH);
 
-        form_tv_date_theoretical.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        FormActivity.this,
-                        android.R.style.Theme_DeviceDefault_Dialog,
-                        onDateSetListener,
-                        year, month, day);
-                datePickerDialog.getWindow().setBackgroundDrawable(
-                        new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
-            }
-        });
+        setDateTime(form_tv_date_theoretical, "theoretical");
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -84,19 +72,7 @@ public class FormActivity extends AppCompatActivity {
         };
 
 
-        form_tv_date_practical.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(
-                        FormActivity.this,
-                        android.R.style.Theme_DeviceDefault_Dialog,
-                        onDatePracticalSetListener,
-                        year, month, day);
-                datePickerDialog.getWindow().setBackgroundDrawable(
-                        new ColorDrawable(Color.TRANSPARENT));
-                datePickerDialog.show();
-            }
-        });
+        setDateTime(form_tv_date_practical, "practical");
 
         onDatePracticalSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -114,12 +90,10 @@ public class FormActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(licenceCategories);
 
-        RadioButton radioButton =
-                findViewById(rgSex.getCheckedRadioButtonId());
-        String sex = radioButton.getText().toString();
+//        RadioButton radioButton =
+//                findViewById(rgSex.getCheckedRadioButtonId());
+//        String sex = radioButton.getText().toString();
 
-
-//        Form info = new Form()
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -129,6 +103,22 @@ public class FormActivity extends AppCompatActivity {
         });
     }
 
+    private void setDateTime(final TextView textView, final String listenerType) {
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        FormActivity.this,
+                        android.R.style.Theme_DeviceDefault_Dialog,
+                        listenerType == "theoretical"?onDateSetListener:onDatePracticalSetListener,
+                        year, month, day);
+                datePickerDialog.getWindow().setBackgroundDrawable(
+                        new ColorDrawable(Color.TRANSPARENT));
+                datePickerDialog.show();
+            }
+        });
+    }
 
 
 }
