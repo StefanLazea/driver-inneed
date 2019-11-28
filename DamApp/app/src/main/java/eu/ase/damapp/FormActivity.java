@@ -21,6 +21,8 @@ import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
 
+import eu.ase.damapp.util.Form;
+
 public class FormActivity extends AppCompatActivity {
     private TextView form_tv_date_theoretical;
     private TextView form_tv_date_practical;
@@ -115,6 +117,9 @@ public class FormActivity extends AppCompatActivity {
         RadioButton radioButton =
                 findViewById(rgSex.getCheckedRadioButtonId());
         String sex = radioButton.getText().toString();
+
+
+//        Form info = new Form()
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
