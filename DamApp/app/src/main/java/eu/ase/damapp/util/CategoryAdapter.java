@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -38,12 +39,13 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
                         @NonNull ViewGroup parent
     ) {
         View view = layoutInflater.inflate(resourse, parent, false);
-
+        ImageView img = view.findViewById(R.id.lv_row_img);
         Category category = categories.get(position);
         if(category != null){
             addName(view, category.getName());
             addRating(view, category.getRating());
         }
+        img.setImageResource(R.drawable.ic_add_a_photo_black_24dp);
         return view;
     }
 

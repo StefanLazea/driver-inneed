@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,9 +19,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
-import java.util.Date;
-
-import eu.ase.damapp.util.Form;
 
 public class FormActivity extends AppCompatActivity {
     private TextView form_tv_date_theoretical;
@@ -52,14 +48,13 @@ public class FormActivity extends AppCompatActivity {
         checkBoxSchool = findViewById(R.id.form_check_school);
         btnSend = findViewById(R.id.form_btn);
         school = findViewById(R.id.form_input_school);
-    }
-
-    private void initComponents() {
         timeNow = Calendar.getInstance();
         year = timeNow.get(Calendar.YEAR);
         month = timeNow.get(Calendar.MONTH);
         day = timeNow.get(Calendar.DAY_OF_MONTH);
+    }
 
+    private void initComponents() {
         setDateTime(form_tv_date_theoretical, "theoretical");
 
         onDateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -90,17 +85,31 @@ public class FormActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(licenceCategories);
 
-//        RadioButton radioButton =
-//                findViewById(rgSex.getCheckedRadioButtonId());
-//        String sex = radioButton.getText().toString();
-
-
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Succes", Toast.LENGTH_LONG).show();
+                if (validateFormData()) {
+                    Toast.makeText(getApplicationContext(), "Succes", Toast.LENGTH_LONG).show();
+
+                }
             }
         });
+    }
+
+    private boolean validateFormData() {
+//        if (!checkBoxSchool.isChecked()) {
+//            TextView updatedDate = findViewById(R.id.form_date_exam_practical);
+//            String update = updatedDate.getText().toString();
+//            if (form_tv_date_practical.getText().toString().equals(update)
+//                    && !form_tv_date_practical.getText().toString().contains("/"))
+//            {
+//                Toast.makeText(getApplicationContext(),
+//                        "Data nu este introdusa",
+//                        Toast.LENGTH_LONG).show();
+//                return false;
+//            }
+//        }
+        return true;
     }
 
     private void setDateTime(final TextView textView, final String listenerType) {
@@ -111,7 +120,7 @@ public class FormActivity extends AppCompatActivity {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
                         FormActivity.this,
                         android.R.style.Theme_DeviceDefault_Dialog,
-                        listenerType == "theoretical"?onDateSetListener:onDatePracticalSetListener,
+                        listenerType.equals("theoretical") ? onDateSetListener : onDatePracticalSetListener,
                         year, month, day);
                 datePickerDialog.getWindow().setBackgroundDrawable(
                         new ColorDrawable(Color.TRANSPARENT));

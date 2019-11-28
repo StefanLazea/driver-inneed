@@ -23,11 +23,11 @@ import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
 
 public class MainActivity extends AppCompatActivity {
-    NavigationView navigationView;
-    FloatingActionButton fabAskQuestion;
-    DrawerLayout drawerLayout;
-    Fragment currentFragment;
-    ArrayList<Category> categories = new ArrayList<>();
+    private NavigationView navigationView;
+    private FloatingActionButton fabAskQuestion;
+    private DrawerLayout drawerLayout;
+    private Fragment currentFragment;
+    private ArrayList<Category> categories = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCategories(){
-        categories.add(new Category("Mecanica1", (float)5));
-        categories.add(new Category("Mecanica2", (float)3));
+        categories.add(new Category("Mecanica", (float)5));
+        categories.add(new Category("Semne de circulatie", (float)3));
         categories.add(new Category("Contraventii", (float)2));
 
         if(currentFragment instanceof HomeFragment){

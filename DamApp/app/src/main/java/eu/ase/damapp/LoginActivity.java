@@ -1,11 +1,6 @@
 package eu.ase.damapp;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,17 +8,19 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class LoginActivity extends AppCompatActivity {
 
-    private String pass = "test123123";
-    private String user = "stefan";
+    private final String pass = "test123123";
+    private final String user = "stefan";
 
-    EditText editTextUsername;
-    EditText editTextPass;
-    Button buttonLogin;
-    TextView tvWithoutAccount;
+    private EditText editTextUsername;
+    private EditText editTextPass;
+    private Button buttonLogin;
+    private TextView tvWithoutAccount;
+    private Intent intent;
 
-    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

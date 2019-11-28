@@ -12,7 +12,6 @@ import java.net.URL;
 
 public class HttpManager extends AsyncTask<String, Void, String> {
 
-    private URL url;
     private HttpURLConnection connection;
     private InputStream inputStream;
     private InputStreamReader inputStreamReader;
@@ -23,7 +22,7 @@ public class HttpManager extends AsyncTask<String, Void, String> {
         StringBuilder result = new StringBuilder();
 
         try {
-            url = new URL(strings[0]);
+            URL url = new URL(strings[0]);
             connection = (HttpURLConnection) url.openConnection();
             inputStream = connection.getInputStream();
             inputStreamReader = new InputStreamReader(inputStream);

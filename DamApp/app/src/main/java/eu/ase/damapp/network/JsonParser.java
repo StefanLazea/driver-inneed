@@ -7,8 +7,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.ase.damapp.R;
-
 public class JsonParser {
     public static HttpResponse parseJson(String json) {
         if (json == null) {
