@@ -69,7 +69,9 @@ public class QuestionsFragment extends Fragment {
         btnTickets = view.findViewById(R.id.questions_btn_tickets);
 
         listViewQuestions = view.findViewById(R.id.lv_questions);
-        ArrayAdapter<Item> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, selectedResponse);
+        ArrayAdapter<Item> adapter = new ArrayAdapter<>(getContext(),
+                android.R.layout.simple_list_item_1,
+                selectedResponse);
         listViewQuestions.setAdapter(adapter);
         unSelectedButtons();
 
