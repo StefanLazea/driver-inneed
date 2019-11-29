@@ -89,7 +89,9 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateFormData()) {
-                    Toast.makeText(getApplicationContext(), "Succes", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            String.valueOf(R.string.form_succes_message),
+                            Toast.LENGTH_LONG).show();
 
                 }
             }

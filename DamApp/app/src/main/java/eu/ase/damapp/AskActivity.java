@@ -37,7 +37,7 @@ public class AskActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),
-                        "Ati trimis cu succes intrebarea",
+                        String.valueOf(R.string.ask_success_message),
                         Toast.LENGTH_LONG
                 ).show();
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);

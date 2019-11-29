@@ -50,6 +50,16 @@
 
     <string name="login_user">stefan</string>
     <string name="login_pass">test123123</string>
+    <string name="form_tv_category">Categorie</string>
+    <string name="form_tv_theoretical_label">Data examen teoretic</string>
+    <string name="form_tv_practical_label">Data examen practic</string>
+    <string name="form_tv_practical">Apasa pentru alegere data</string>
+    <string name="form_rb_male">Masculin</string>
+    <string name="form_rb_female">Feminin</string>
+    <string name="form_cb_school_started">Am inceput scoala</string>
+    <string name="form_tv_sex">Sex:</string>
+    <string name="ask_success_message">Ati trimis cu succes intrebarea</string>
+    <string name="form_succes_message">Succes</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>
