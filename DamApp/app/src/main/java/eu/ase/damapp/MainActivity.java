@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 import eu.ase.damapp.fragment.HomeFragment;
@@ -143,8 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void updateMenuDetails(User user) {
         if (user != null) {
-//            TextView navName = findViewById(R.id.nav_name);
-//            navName.setText(user.getUsername());
+            View headerView = navigationView.getHeaderView(0);
+            TextView navName = headerView.findViewById(R.id.nav_name);
+            navName.setText(user.getUsername());
         }
     }
 }
