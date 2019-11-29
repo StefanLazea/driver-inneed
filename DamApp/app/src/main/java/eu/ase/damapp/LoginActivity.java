@@ -10,16 +10,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import eu.ase.damapp.util.User;
+
 public class LoginActivity extends AppCompatActivity {
 
     private final String pass = "test123123";
     private final String user = "stefan";
+    public static final String CURRENT_USER = "curentUser";
 
     private EditText editTextUsername;
     private EditText editTextPass;
     private Button buttonLogin;
     private TextView tvWithoutAccount;
-    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +76,10 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    Toast.makeText(getApplicationContext(),
-                            R.string.login_message_success,
-                            Toast.LENGTH_LONG).show();
-                    intent = new Intent(LoginActivity.this, MainActivity.class);
+                    User currentUser = new User(editTextUsername.getText().toString(),
+                            editTextPass.getText().toString());
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra(CURRENT_USER, currentUser);
                     startActivity(intent);
                 }
             }
@@ -86,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         tvWithoutAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });

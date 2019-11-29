@@ -53,7 +53,6 @@ public class QuestionsFragment extends Fragment {
                 httpResponse = JsonParser.parseJson(s);
                 if (httpResponse != null) {
                     selectedResponse.addAll(httpResponse.getMechanics());
-                    Toast.makeText(getContext(), httpResponse.getMechanics().toString(), Toast.LENGTH_LONG).show();
                 }
             }
         }.execute(URL);

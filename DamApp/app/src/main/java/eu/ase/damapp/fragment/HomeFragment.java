@@ -51,7 +51,6 @@ public class HomeFragment extends Fragment {
 
         if (getArguments() != null) {
             categories = getArguments().getParcelableArrayList(CATEGORY_KEY);
-            Toast.makeText(getContext(), categories.toString(), Toast.LENGTH_LONG).show();
         }
 
         if (getContext() != null) {

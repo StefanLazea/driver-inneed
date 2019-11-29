@@ -99,18 +99,6 @@ public class FormActivity extends AppCompatActivity {
     }
 
     private boolean validateFormData() {
-//        if (!checkBoxSchool.isChecked()) {
-//            TextView updatedDate = findViewById(R.id.form_date_exam_practical);
-//            String update = updatedDate.getText().toString();
-//            if (form_tv_date_practical.getText().toString().equals(update)
-//                    && !form_tv_date_practical.getText().toString().contains("/"))
-//            {
-//                Toast.makeText(getApplicationContext(),
-//                        "Data nu este introdusa",
-//                        Toast.LENGTH_LONG).show();
-//                return false;
-//            }
-//        }
         return true;
     }
 

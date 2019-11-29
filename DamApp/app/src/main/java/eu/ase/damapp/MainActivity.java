@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -21,8 +24,11 @@ import java.util.ArrayList;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
+import eu.ase.damapp.util.User;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int REQUEST_CODE_CURRENT_USER = 200;
+
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
@@ -37,6 +43,17 @@ public class MainActivity extends AppCompatActivity {
         initComponents();
         initCategories();
         openDefaultFragment(savedInstanceState);
+        getCurrentUser();
+    }
+
+    private void getCurrentUser() {
+        if (getIntent().getExtras() != null) {
+            User currentUser = getIntent().getExtras().getParcelable(LoginActivity.CURRENT_USER);
+            Toast.makeText(getApplicationContext(),
+                    getString(R.string.main_welcome_user).concat(currentUser.getUsername()),
+                    Toast.LENGTH_LONG).show();
+            updateMenuDetails(currentUser);
+        }
     }
 
     private void configNavigation() {
@@ -63,13 +80,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void initCategories(){
-        categories.add(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float)5));
-        categories.add(new Category(R.drawable.ic_person_black_24dp,"Semne de circulatie", (float)3));
-        categories.add(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float)2));
+    private void initCategories() {
+        categories.add(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float) 5));
+        categories.add(new Category(R.drawable.ic_person_black_24dp, "Semne de circulatie", (float) 3));
+        categories.add(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float) 2));
 
-        if(currentFragment instanceof HomeFragment){
-            ((HomeFragment)currentFragment).notifyInternal();
+        if (currentFragment instanceof HomeFragment) {
+            ((HomeFragment) currentFragment).notifyInternal();
         }
     }
 
@@ -94,13 +111,11 @@ public class MainActivity extends AppCompatActivity {
                     currentFragment = createHomeFragment();
                     openFragment();
 
-                }
-                else if(menuItem.getItemId() == R.id.nav_questions){
+                } else if (menuItem.getItemId() == R.id.nav_questions) {
                     currentFragment = new QuestionsFragment();
                     openFragment();
 
-                }
-                else if(menuItem.getItemId() == R.id.nav_form){
+                } else if (menuItem.getItemId() == R.id.nav_form) {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                     startActivity(intent);
                 }
@@ -123,5 +138,13 @@ public class MainActivity extends AppCompatActivity {
         bundle.putParcelableArrayList(HomeFragment.CATEGORY_KEY, categories);
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+
+    private void updateMenuDetails(User user) {
+        if (user != null) {
+//            TextView navName = findViewById(R.id.nav_name);
+//            navName.setText(user.getUsername());
+        }
     }
 }
