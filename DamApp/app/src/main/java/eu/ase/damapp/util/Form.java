@@ -1,14 +1,16 @@
 package eu.ase.damapp.util;
 
+import java.util.Date;
+
 public class Form {
     private String schoolName;
     private String licenceCategory;
-    private String dateTheoreticalExam;
-    private String datePracticalExam;
+    private Date dateTheoreticalExam;
+    private Date datePracticalExam;
     private String sex;
     private boolean schoolStarted;
 
-    public Form(String schoolName, String licenceCategory, String dateTheoreticalExam, String datePracticalExam, String sex, boolean schoolStarted) {
+    public Form(String schoolName, String licenceCategory, Date dateTheoreticalExam, Date datePracticalExam, String sex, boolean schoolStarted) {
         this.schoolName = schoolName;
         this.licenceCategory = licenceCategory;
         this.dateTheoreticalExam = dateTheoreticalExam;
@@ -33,19 +35,19 @@ public class Form {
         this.licenceCategory = licenceCategory;
     }
 
-    public String getDateTheoreticalExam() {
+    public Date getDateTheoreticalExam() {
         return dateTheoreticalExam;
     }
 
-    public void setDateTheoreticalExam(String dateTheoreticalExam) {
+    public void setDateTheoreticalExam(Date dateTheoreticalExam) {
         this.dateTheoreticalExam = dateTheoreticalExam;
     }
 
-    public String getDatePracticalExam() {
+    public Date getDatePracticalExam() {
         return datePracticalExam;
     }
 
-    public void setDatePracticalExam(String datePracticalExam) {
+    public void setDatePracticalExam(Date datePracticalExam) {
         this.datePracticalExam = datePracticalExam;
     }
 

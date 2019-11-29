@@ -1,6 +1,7 @@
 package eu.ase.damapp;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,9 +20,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
+import eu.ase.damapp.util.Form;
 
 public class FormActivity extends AppCompatActivity {
+    public static final String DATE_FORMAT = "dd-MM-yyyy";
     private TextView form_tv_date_theoretical;
     private TextView form_tv_date_practical;
     private Button btnSend;
@@ -61,7 +70,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = month + "/" + dayOfMonth + "/" + year;
+                String date = month + "-" + dayOfMonth + "-" + year;
                 form_tv_date_theoretical.setText(date);
             }
         };
@@ -73,7 +82,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = month + "/" + dayOfMonth + "/" + year;
+                String date = month + "-" + dayOfMonth + "-" + year;
                 form_tv_date_practical.setText(date);
             }
         };
@@ -85,25 +94,60 @@ public class FormActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(licenceCategories);
 
+        rgSex = findViewById(R.id.form_rg_sex);
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateFormData()) {
-                    Toast.makeText(getApplicationContext(),
-                            String.valueOf(R.string.form_succes_message),
-                            Toast.LENGTH_LONG).show();
-
+                    Form formResult = createForm();
+                    Toast.makeText(getApplicationContext(), "" + formResult, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(FormActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
     }
 
+
+    private Form createForm() {
+        Date dateTheoretical = convertStringToDate(form_tv_date_theoretical.getText().toString());
+        Date datePractical = convertStringToDate(form_tv_date_practical.getText().toString());
+
+        String schoolName = school.getText().toString();
+        String licenceCategory = spinner.getSelectedItem().toString();
+
+        boolean schoolStarted = false;
+        if (checkBoxSchool.isChecked()) {
+            schoolStarted = true;
+        }
+        RadioButton rb = findViewById(rgSex.getCheckedRadioButtonId());
+        String sex = rb.getText().toString();
+        return new Form(schoolName, licenceCategory, dateTheoretical, datePractical, sex, schoolStarted);
+    }
+
+    private Date convertStringToDate(String date) {
+        Date dateTheoretical = null;
+        try {
+            dateTheoretical = new SimpleDateFormat(DATE_FORMAT, Locale.US).parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateTheoretical;
+    }
+
     private boolean validateFormData() {
+        if (school.getText() != null && school.getText().toString().trim().isEmpty()) {
+            Toast.makeText(getApplicationContext(),
+                    R.string.form_school_error,
+                    Toast.LENGTH_LONG)
+                    .show();
+            return false;
+        }
         return true;
     }
 
     private void setDateTime(final TextView textView, final String listenerType) {
-
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
