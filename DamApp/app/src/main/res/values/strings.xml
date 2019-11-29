@@ -66,6 +66,7 @@
     <string name="home_button_ok">Ok</string>
     <string name="home_ratingPicker_title">Alegeti nota</string>
     <string name="main_welcome_user">Bine ai venit, </string>
+    <string name="main_nav_header_username_anonim">Anonim user</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>
