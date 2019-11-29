@@ -16,7 +16,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private final String pass = "test123123";
     private final String user = "stefan";
-    public static final String CURRENT_USER = "curentUser";
+    public static final String CURRENT_USER = "currentUser";
 
     private EditText editTextUsername;
     private EditText editTextPass;

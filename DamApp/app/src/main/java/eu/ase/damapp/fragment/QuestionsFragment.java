@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -45,7 +44,7 @@ public class QuestionsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_questions, container, false);
 
-        initComponets(view);
+        initComponents(view);
 
         new HttpManager() {
             @Override
@@ -62,7 +61,7 @@ public class QuestionsFragment extends Fragment {
 
     }
 
-    private void initComponets(View view) {
+    private void initComponents(View view) {
         btnMechanics = view.findViewById(R.id.questions_btn_mechanics);
         btnSigns = view.findViewById(R.id.questions_btn_signs);
         btnTickets = view.findViewById(R.id.questions_btn_tickets);

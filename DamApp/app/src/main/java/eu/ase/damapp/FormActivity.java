@@ -29,7 +29,7 @@ import java.util.Locale;
 import eu.ase.damapp.util.Form;
 
 public class FormActivity extends AppCompatActivity {
-    public static final String DATE_FORMAT = "dd-MM-yyyy";
+    private static final String DATE_FORMAT = "dd-MM-yyyy";
     private TextView form_tv_date_theoretical;
     private TextView form_tv_date_practical;
     private Button btnSend;

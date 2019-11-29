@@ -1,6 +1,5 @@
 package eu.ase.damapp.util;
 
-import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
 
