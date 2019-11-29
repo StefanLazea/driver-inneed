@@ -115,6 +115,7 @@ public class QuestionsFragment extends Fragment {
 
 
     }
+
     private void selectResponse(List<Item> list) {
         selectedResponse.clear();
         selectedResponse.addAll(list);

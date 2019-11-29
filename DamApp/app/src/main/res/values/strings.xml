@@ -60,6 +60,11 @@
     <string name="form_tv_sex">Sex:</string>
     <string name="ask_success_message">Ati trimis cu succes intrebarea</string>
     <string name="form_succes_message">Succes</string>
+    <string name="home_rating_below">Nota nu poate fi 0</string>
+    <string name="home_cancel_button">CANCEL</string>
+    <string name="home_ratingPicker_message">Alegeti o nota pentru categoria selectata</string>
+    <string name="home_button_ok">Ok</string>
+    <string name="home_ratingPicker_title">Alegeti nota</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>
