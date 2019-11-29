@@ -5,10 +5,12 @@ import android.os.Parcelable;
 
 public class Category implements Parcelable {
 
+    private int imgDrawable;
     private String name;
     private float rating;
 
-    public Category(String name, float rating) {
+    public Category(int imgDrawable, String name, float rating) {
+        this.imgDrawable = imgDrawable;
         this.name = name;
         this.rating = rating;
     }
@@ -48,7 +50,7 @@ public class Category implements Parcelable {
         dest.writeFloat(this.rating);
     }
 
-    private Category(Parcel in){
+    private Category(Parcel in) {
         this.name = in.readString();
         this.rating = in.readFloat();
     }
@@ -66,4 +68,11 @@ public class Category implements Parcelable {
         }
     };
 
+    public int getImgDrawable() {
+        return imgDrawable;
+    }
+
+    public void setImgDrawable(int imgDrawable) {
+        this.imgDrawable = imgDrawable;
+    }
 }

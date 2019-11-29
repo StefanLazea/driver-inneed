@@ -64,9 +64,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCategories(){
-        categories.add(new Category("Mecanica", (float)5));
-        categories.add(new Category("Semne de circulatie", (float)3));
-        categories.add(new Category("Contraventii", (float)2));
+        categories.add(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float)5));
+        categories.add(new Category(R.drawable.ic_person_black_24dp,"Semne de circulatie", (float)3));
+        categories.add(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float)2));
 
         if(currentFragment instanceof HomeFragment){
             ((HomeFragment)currentFragment).notifyInternal();

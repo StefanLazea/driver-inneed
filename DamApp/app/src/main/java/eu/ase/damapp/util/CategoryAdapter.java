@@ -45,7 +45,7 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
             addName(view, category.getName());
             addRating(view, category.getRating());
         }
-        img.setImageResource(R.drawable.ic_add_a_photo_black_24dp);
+        img.setImageResource(category.getImgDrawable());
         return view;
     }
 
