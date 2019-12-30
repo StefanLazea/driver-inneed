@@ -23,7 +23,7 @@ import java.util.ArrayList;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
-import eu.ase.damapp.util.User;
+import eu.ase.damapp.database.model.User;
 
 public class MainActivity extends AppCompatActivity {
     public static final String START_TEST="Starting the quiz";

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import eu.ase.damapp.util.User;
+import eu.ase.damapp.database.model.User;
 
 public class LoginActivity extends AppCompatActivity {
 
