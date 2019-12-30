@@ -25,7 +25,7 @@ import eu.ase.damapp.network.JsonParser;
  * A simple {@link Fragment} subclass.
  */
 public class QuestionsFragment extends Fragment {
-    private static final String URL = "http://api.myjson.com/bins/uqzey";
+    private static final String URL = "https://api.myjson.com/bins/uqzey";
     private HttpResponse httpResponse;
 
     private Button btnMechanics;

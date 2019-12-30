@@ -15,6 +15,7 @@ public class AskActivity extends AppCompatActivity {
     private EditText etQuestion;
     private Spinner spinner;
     private Button btnSend;
+
     //todo database storage of this questions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +34,31 @@ public class AskActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(categoriesAdapter);
 
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),
-                        getString(R.string.ask_success_message),
-                        Toast.LENGTH_LONG
-                ).show();
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
+                if (validate()) {
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.ask_success_message),
+                            Toast.LENGTH_LONG
+                    ).show();
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
+
+    }
+
+    private boolean validate() {
+        if (etQuestion.getText().toString().trim().isEmpty() || etQuestion == null) {
+            Toast.makeText(getApplicationContext(), R.string.ask_etQuestion_error,
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        return true;
 
     }
 }

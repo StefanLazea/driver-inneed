@@ -26,6 +26,7 @@ import eu.ase.damapp.util.Category;
 import eu.ase.damapp.util.User;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String START_TEST="Starting the quiz";
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
@@ -114,6 +115,10 @@ public class MainActivity extends AppCompatActivity {
 
                 } else if (menuItem.getItemId() == R.id.nav_form) {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                    startActivity(intent);
+                } else if (menuItem.getItemId() == R.id.nav_quiz){
+                    Intent intent = new Intent(getApplicationContext(), QuestionsActivity.class);
+                    intent.putExtra("StartKey", START_TEST);
                     startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);

@@ -50,6 +50,8 @@
     <string name="main_nav_header_username_anonim">Anonim user</string>
     <string name="form_school_error">Denumirea scolii nu poate fi goala</string>
     <string name="form_tv_date_text">Apasa pentru adaugare</string>
+    <string name="menu_quiz">Quiz</string>
+    <string name="ask_etQuestion_error">Campul intrebare nu trebuie sa fie gol</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>
