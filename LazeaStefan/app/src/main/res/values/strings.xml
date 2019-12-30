@@ -1,0 +1,70 @@
+<resources>
+    <string name="app_name">Drive your licence</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_send">Send</string>
+    <string name="login_username">Username</string>
+    <string name="login_logo">Login logo</string>
+    <string name="login_password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_error_empty_username">Username gol</string>
+    <string name="login_empty_password">Campul nu poate fi gol</string>
+    <string name="login_invalid_username">User gresit</string>
+    <string name="login_invalid_password">Parola incorecta</string>
+    <string name="login_message_success">V-ati logat cu succes!</string>
+    <string name="lv_row_icon_description">Icon</string>
+    <string name="lv_empty_resource">-</string>
+    <string name="menu_questions">Intrebari examen</string>
+    <string name="questions_btn_sign">Semne</string>
+    <string name="questions_btn_mechanics">Mecanica</string>
+    <string name="questions_btn_tickets">Contraventii</string>
+    <string name="form_students_menu">Despre</string>
+    <string name="form_school_name">Nume scoala</string>
+    <string name="ask_fab_description">Adauga o intrebare despre examen</string>
+    <string name="ask_tv_category">Categorie</string>
+    <string name="ask_button_send">Trimite</string>
+    <string name="ask_ti_question">Precizati intrebarea</string>
+    <string name="login_tv_without_account">Continua fara cont</string>
+
+
+    <string name="login_user">stefan</string>
+    <string name="login_pass">test123123</string>
+    <string name="form_tv_category">Categorie</string>
+    <string name="form_tv_theoretical_label">Data examen teoretic</string>
+    <string name="form_tv_practical_label">Data examen practic</string>
+    <string name="form_tv_practical">Apasa pentru alegere data</string>
+    <string name="form_rb_male">Masculin</string>
+    <string name="form_rb_female">Feminin</string>
+    <string name="form_cb_school_started">Am inceput scoala</string>
+    <string name="form_tv_sex">Sex:</string>
+    <string name="ask_success_message">Ati trimis cu succes intrebarea</string>
+    <string name="home_rating_below">Nota nu poate fi 0</string>
+    <string name="home_cancel_button">Cancel</string>
+    <string name="home_ratingPicker_message">Alegeti o nota pentru categoria selectata</string>
+    <string name="home_button_ok">OK</string>
+    <string name="home_ratingPicker_title">Alegeti nota</string>
+    <string name="main_welcome_user">Bine ai venit, </string>
+    <string name="main_nav_header_username_anonim">Anonim user</string>
+    <string name="form_school_error">Denumirea scolii nu poate fi goala</string>
+    <string name="form_tv_date_text">Apasa pentru adaugare</string>
+    <string name="form_rb_sex_error">Selectati sexul</string>
+
+    <string-array name="quiz_questions_categories">
+        <item>Mecanica</item>
+        <item>Semne rutiere</item>
+        <item>Contraventii</item>
+        <item>alta categorie(...)</item>
+    </string-array>
+
+    <string-array name="form_licence_options">
+        <item>categoria A</item>
+        <item>categoria B</item>
+        <item>categoria C</item>
+        <item>categoria CE</item>
+        <item>categoria D</item>
+    </string-array>
+
+</resources>
