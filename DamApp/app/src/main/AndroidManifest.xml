@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QuestionsActivity"></activity>
-        <activity android:name=".FormActivity"></activity>
+        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".QuestionsActivity" />
+        <activity android:name=".FormActivity" />
         <activity android:name=".AskActivity" />
         <activity
             android:name=".LoginActivity"
