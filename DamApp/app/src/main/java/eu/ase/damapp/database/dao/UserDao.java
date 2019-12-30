@@ -13,8 +13,11 @@ import eu.ase.damapp.database.model.User;
 //nu face conexiune
 @Dao
 public interface UserDao {
-    @Query("SELECT * FROM users WHERE id =:id")
+    @Query("SELECT * FROM users WHERE id = :id")
     User findUserById(String id);
+
+    @Query("SELECT * FROM users WHERE username = :username")
+    User findUserByUsername(String username);
 
     @Insert
     long insert(User user);

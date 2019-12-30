@@ -29,6 +29,5 @@ public abstract class DatabaseManager extends RoomDatabase {
         return dbManager;
     }
 
-
     public abstract UserDao getUserDao();
 }
