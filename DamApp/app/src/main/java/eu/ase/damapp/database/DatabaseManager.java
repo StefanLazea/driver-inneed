@@ -6,6 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import eu.ase.damapp.database.dao.UserDao;
 import eu.ase.damapp.database.model.User;
 
 @Database(entities = {User.class}, exportSchema = false, version = 1)
@@ -27,4 +28,7 @@ public abstract class DatabaseManager extends RoomDatabase {
         }
         return dbManager;
     }
+
+
+    public abstract UserDao getUserDao();
 }

@@ -57,6 +57,10 @@ public class User implements Parcelable {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     @Override
     public int describeContents() {
         return 0;
