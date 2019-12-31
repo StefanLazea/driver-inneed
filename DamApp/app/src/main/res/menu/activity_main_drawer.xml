@@ -21,6 +21,10 @@
             android:id="@+id/nav_quiz"
             android:icon="@drawable/ic_textsms_black_24dp"
             android:title="@string/menu_quiz"/>
+        <item
+            android:id="@+id/nav_delete_account"
+            android:icon="@drawable/ic_delete_black_24dp"
+            android:title="@string/menu_delete"/>
     </group>
 
 </menu>

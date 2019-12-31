@@ -11,7 +11,7 @@
     <string name="login_password_hint">Password</string>
     <string name="login_button">Login</string>
     <string name="login_error_empty_username">Username gol</string>
-    <string name="login_empty_password">Campul nu poate fi gol</string>
+    <string name="login_empty_password">Campul pentru parola nu poate fi gol</string>
     <string name="login_invalid_username">User gresit</string>
     <string name="login_invalid_password">Parola incorecta</string>
     <string name="login_message_success">V-ati logat cu succes!</string>
@@ -52,6 +52,13 @@
     <string name="form_tv_date_text">Apasa pentru adaugare</string>
     <string name="menu_quiz">Quiz</string>
     <string name="ask_etQuestion_error">Campul intrebare nu trebuie sa fie gol</string>
+    <string name="login_tv_register">Inregistreaza-te</string>
+    <string name="register_username_hint">Username sau email</string>
+    <string name="register_tv_retype_password">Retype password</string>
+    <string name="register_button_hint">Register</string>
+    <string name="menu_delete">Delete account</string>
+    <string name="register_confirm_message_empty">Password confirmation field is empty</string>
+    <string name="register_pass_mismatch">Parolele nu corespund</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>

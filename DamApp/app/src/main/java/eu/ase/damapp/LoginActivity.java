@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText editTextPass;
     private Button buttonLogin;
     private TextView tvWithoutAccount;
+    private TextView tvRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextPass = findViewById(R.id.login_input_password);
         buttonLogin = findViewById(R.id.login_button);
         tvWithoutAccount = findViewById(R.id.login_tv_without_account);
+        tvRegister = findViewById(R.id.login_tv_register);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,6 +81,10 @@ public class LoginActivity extends AppCompatActivity {
                     User currentUser = new User(editTextUsername.getText().toString(),
                             editTextPass.getText().toString());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+
+                    // TODO add in shared preferences the id; that check when launching the app if it has
+                    // if the id is there, then the login page no longer should pop up
                     intent.putExtra(CURRENT_USER, currentUser);
                     startActivity(intent);
                 }
@@ -89,6 +95,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
