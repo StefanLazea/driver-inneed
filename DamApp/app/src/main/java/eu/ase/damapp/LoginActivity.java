@@ -1,5 +1,6 @@
 package eu.ase.damapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,18 +12,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import eu.ase.damapp.database.model.User;
+import eu.ase.damapp.database.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String pass = "test123123";
-    private final String user = "stefan";
     public static final String CURRENT_USER = "currentUser";
-
     private EditText editTextUsername;
     private EditText editTextPass;
     private Button buttonLogin;
     private TextView tvWithoutAccount;
     private TextView tvRegister;
+    private User userFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +43,6 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!editTextUsername.getText().toString().equals(user)) {
-            Toast.makeText(getApplicationContext(),
-                    R.string.login_invalid_username,
-                    Toast.LENGTH_LONG).show();
-            return false;
-        }
-
         if (editTextPass == null &&
                 editTextPass.getText().toString().trim().isEmpty()) {
             Toast.makeText(getApplicationContext(),
@@ -58,7 +51,18 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (!editTextPass.getText().toString().equals(pass)) {
+        return true;
+    }
+
+    private boolean checkCredentials() {
+
+        if (!editTextUsername.getText().toString().equals(userFound.getUsername())) {
+            Toast.makeText(getApplicationContext(),
+                    R.string.login_invalid_username,
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if (!editTextPass.getText().toString().equals(userFound.getPassword())) {
             Toast.makeText(getApplicationContext(),
                     R.string.login_invalid_password,
                     Toast.LENGTH_LONG).show();
@@ -78,15 +82,17 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    User currentUser = new User(editTextUsername.getText().toString(),
-                            editTextPass.getText().toString());
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
+                    getUserByUsernameFromDb(editTextUsername.getText().toString());
 
                     // TODO add in shared preferences the id; that check when launching the app if it has
                     // if the id is there, then the login page no longer should pop up
-                    intent.putExtra(CURRENT_USER, currentUser);
-                    startActivity(intent);
+
+                    if (userFound != null && checkCredentials()){
+                        intent.putExtra(CURRENT_USER, userFound);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -106,5 +112,17 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getUserByUsernameFromDb(String username) {
+        new UserService.GetOneByUsername(getApplication()) {
+            @Override
+            protected void onPostExecute(User result) {
+                if (result != null) {
+                    userFound = result;
+                }
+            }
+        }.execute(username);
     }
 }
