@@ -3,6 +3,7 @@ package eu.ase.damapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,11 +14,14 @@ import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.database.service.UserService;
 
 public class RegisterActivity extends AppCompatActivity {
-
+    private final static String SHARED_PREF_NAME = "loginUserIdPref";
+    private final static String USER_ID = "userId";
     private Button btnRegister;
     private EditText etUsername;
     private EditText etPassword;
     private EditText etConfirmPassword;
+    private SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +99,21 @@ public class RegisterActivity extends AppCompatActivity {
             protected void onPostExecute(User result) {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),
-                            "Cont creat " + result.getId(),
+                            "Cont creat",
                             Toast.LENGTH_LONG)
                             .show();
+
+                    setIdToPreferences(result.getId());
                 }
             }
         }.execute(user);
+    }
+
+    private void setIdToPreferences(long id) {
+        preferences = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        editor.putLong(USER_ID, id);
+        editor.apply();
     }
 }
