@@ -112,8 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void setIdToPreferences(long id) {
         preferences = getApplicationContext().getSharedPreferences(SHARED_PREF_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
-
         editor.putLong(USER_ID, id);
-        editor.apply();
+        editor.commit();
     }
 }
