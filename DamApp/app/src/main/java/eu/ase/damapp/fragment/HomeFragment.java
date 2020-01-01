@@ -99,13 +99,13 @@ public class HomeFragment extends Fragment {
         dialog.show();
     }
 
-    //todo implement the reviews section
     private void updateCategory(int value, int position) {
         if (value == 0) {
             Toast.makeText(getContext(), getString(R.string.home_rating_below), Toast.LENGTH_LONG).show();
             return;
         }
 
+        Toast.makeText(getContext(), "id ul categoriei"+categories.get(position).getId(), Toast.LENGTH_LONG).show();
         categories.get(position).setRating(value);
         CategoryAdapter adapter = (CategoryAdapter) lvCategories.getAdapter();
         adapter.notifyDataSetChanged();

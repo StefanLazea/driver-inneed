@@ -1,5 +1,6 @@
 package eu.ase.damapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -18,14 +19,16 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import eu.ase.damapp.database.service.CategoryService;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.database.model.User;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String START_TEST="Starting the quiz";
+    public static final String START_TEST = "Starting the quiz";
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
@@ -38,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configNavigation();
         initComponents();
-        initCategories();
+//        initCategories();
+        getAllCategoriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
     }
@@ -76,10 +80,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCategories() {
-        categories.add(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float) 5));
-        categories.add(new Category(R.drawable.ic_person_black_24dp, "Semne de circulatie", (float) 3));
-        categories.add(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float) 2));
+        insertCategoryIntoDB(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float) 5));
+        insertCategoryIntoDB(new Category(R.drawable.ic_person_black_24dp, "Semne de circulatie", (float) 3));
+        insertCategoryIntoDB(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float) 2));
+    }
 
+    private void notifyCustomAdapter() {
         if (currentFragment instanceof HomeFragment) {
             ((HomeFragment) currentFragment).notifyInternal();
         }
@@ -105,15 +111,13 @@ public class MainActivity extends AppCompatActivity {
                 if (menuItem.getItemId() == R.id.nav_home) {
                     currentFragment = createHomeFragment();
                     openFragment();
-
                 } else if (menuItem.getItemId() == R.id.nav_questions) {
                     currentFragment = new QuestionsFragment();
                     openFragment();
-
                 } else if (menuItem.getItemId() == R.id.nav_form) {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                     startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_quiz){
+                } else if (menuItem.getItemId() == R.id.nav_quiz) {
                     Intent intent = new Intent(getApplicationContext(), QuestionsActivity.class);
                     intent.putExtra("StartKey", START_TEST);
                     startActivity(intent);
@@ -147,4 +151,33 @@ public class MainActivity extends AppCompatActivity {
             navName.setText(user.getUsername());
         }
     }
+
+    @SuppressLint("StaticFieldLeak")
+    private void insertCategoryIntoDB(Category category) {
+        new CategoryService.Insert(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Category result) {
+                if (result != null) {
+                    categories.add(result);
+                    notifyCustomAdapter();
+                }
+            }
+        }.execute(category);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getAllCategoriesFromDb() {
+        new CategoryService.GetAll(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(List<Category> results) {
+                if (results != null) {
+                    categories.clear();
+                    categories.addAll(results);
+                    notifyCustomAdapter();
+                }
+            }
+        }.execute();
+    }
+
+
 }
