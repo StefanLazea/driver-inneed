@@ -34,9 +34,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean validate() {
-        if (editTextUsername == null
-                && editTextUsername.getText().toString().trim().isEmpty()) {
-
+        if (editTextUsername == null ||
+                editTextUsername.getText().toString().trim().isEmpty()) {
             Toast.makeText(
                     getApplicationContext(),
                     getString(R.string.login_error_empty_username),
@@ -45,19 +44,17 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         }
 
-        if (editTextPass == null &&
+        if (editTextPass == null ||
                 editTextPass.getText().toString().trim().isEmpty()) {
             Toast.makeText(getApplicationContext(),
                     getString(R.string.login_empty_password),
                     Toast.LENGTH_LONG).show();
             return false;
         }
-
         return true;
     }
 
     private boolean checkCredentials(User userFound) {
-
         if (!editTextUsername.getText().toString().equals(userFound.getUsername())) {
             Toast.makeText(getApplicationContext(),
                     R.string.login_invalid_username,
@@ -85,8 +82,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validate()) {
                     getUserByUsernameFromDb(editTextUsername.getText().toString());
-                    // TODO add in shared preferences the id; that check when launching the app if it has
-                    // if the id is there, then the login page no longer should pop up
                 }
             }
 
@@ -120,9 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                         intent.putExtra(CURRENT_USER, result);
                         startActivity(intent);
                     }
-
                 } else {
-                    Toast.makeText(getApplicationContext(), "User ul nu exista", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.login_user_not_found, Toast.LENGTH_LONG).show();
                 }
             }
         }.execute(username);

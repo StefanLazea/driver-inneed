@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.database.service.UserService;
+import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class RegisterActivity extends AppCompatActivity {
     private final static String SHARED_PREF_NAME = "loginUserIdPref";
@@ -102,8 +103,9 @@ public class RegisterActivity extends AppCompatActivity {
                             "Cont creat",
                             Toast.LENGTH_LONG)
                             .show();
-
-                    setIdToPreferences(result.getId());
+                    CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
+                            SHARED_PREF_NAME, result.getId());
+//                    setIdToPreferences(result.getId());
                 }
             }
         }.execute(user);
