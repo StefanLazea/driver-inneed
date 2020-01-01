@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.database.service.UserService;
+import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -111,6 +112,10 @@ public class LoginActivity extends AppCompatActivity {
             protected void onPostExecute(User result) {
                 if (result != null) {
                     if (checkCredentials(result)) {
+                        CustomSharedPreferences.setIdToPreferences(
+                                getApplicationContext(),
+                                RegisterActivity.SHARED_PREF_NAME,
+                                result.getId());
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra(CURRENT_USER, result);
                         startActivity(intent);

@@ -16,8 +16,8 @@ public class CustomSharedPreferences {
 
     public static long getIdFromPreferences(Context context, String sharedPrefName) {
         preferences = context.getSharedPreferences(sharedPrefName, Context.MODE_PRIVATE);
-        long value = preferences.getInt(USER_ID, -1);
-        if(value != -1){
+        long value = preferences.getLong(USER_ID, -1);
+        if (value != -1) {
             return value;
         }
         return -1;

@@ -24,6 +24,7 @@ import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.Category;
 import eu.ase.damapp.database.model.User;
+import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
     public static final String START_TEST="Starting the quiz";
@@ -47,9 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private void getCurrentUser() {
         if (getIntent().getExtras() != null) {
             User currentUser = getIntent().getExtras().getParcelable(LoginActivity.CURRENT_USER);
-            Toast.makeText(getApplicationContext(),
-                    getString(R.string.main_welcome_user).concat(currentUser.getUsername()),
-                    Toast.LENGTH_LONG).show();
+//            long id = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME);
             updateMenuDetails(currentUser);
         }
     }

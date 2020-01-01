@@ -15,7 +15,7 @@ import eu.ase.damapp.database.service.UserService;
 import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class RegisterActivity extends AppCompatActivity {
-    private final static String SHARED_PREF_NAME = "loginUserIdPref";
+    public final static String SHARED_PREF_NAME = "loginUser";
     private final static String USER_ID = "userId";
     private Button btnRegister;
     private EditText etUsername;
