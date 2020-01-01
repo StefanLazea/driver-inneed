@@ -1,6 +1,7 @@
 package eu.ase.damapp.fragment;
 
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.damapp.QuestionsActivity;
 import eu.ase.damapp.R;
 import eu.ase.damapp.network.HttpManager;
 import eu.ase.damapp.network.HttpResponse;
@@ -28,6 +30,7 @@ import eu.ase.damapp.network.JsonParser;
  */
 public class QuestionsFragment extends Fragment {
     private static final String URL = "https://api.myjson.com/bins/uqzey";
+    public static final String CURRENT_QUESTION = "currentQuestion";
     private HttpResponse httpResponse;
 
     private Button btnMechanics;
@@ -69,10 +72,12 @@ public class QuestionsFragment extends Fragment {
         btnTickets = view.findViewById(R.id.questions_btn_tickets);
 
         listViewQuestions = view.findViewById(R.id.lv_questions);
-        ArrayAdapter<Item> adapter = new ArrayAdapter<>(getContext(),
+        ArrayAdapter<Item> adapter = new ArrayAdapter<>(
+                getContext(),
                 android.R.layout.simple_list_item_1,
                 selectedResponse);
         listViewQuestions.setAdapter(adapter);
+
         unSelectedButtons();
 
         btnMechanics.setOnClickListener(new View
@@ -118,7 +123,13 @@ public class QuestionsFragment extends Fragment {
         listViewQuestions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getContext(), "Dat click test", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getActivity(), QuestionsActivity.class);
+//                intent.putExtra(CURRENT_QUESTION, selectedResponse.get(position));
+
+                Toast.makeText(getContext(), "Intrebarea " + selectedResponse.get(position).getQuestion()
+                        , Toast.LENGTH_LONG).show();
+
+                startActivity(intent);
             }
         });
     }

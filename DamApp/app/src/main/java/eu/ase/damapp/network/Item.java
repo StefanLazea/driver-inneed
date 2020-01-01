@@ -1,6 +1,9 @@
 package eu.ase.damapp.network;
 
-public class Item {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Item implements Parcelable {
     private String question;
     private String img;
     private Answer answer;
@@ -42,6 +45,17 @@ public class Item {
                 ", img='" + img + '\'' +
                 ", answer=" + answer +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(question);
+
     }
 }
 
