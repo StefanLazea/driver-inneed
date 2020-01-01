@@ -16,13 +16,15 @@ import eu.ase.damapp.database.service.UserService;
 
 public class LoginActivity extends AppCompatActivity {
 
+    private final String pass = "test123123";
+    private final String user = "stefan";
     public static final String CURRENT_USER = "currentUser";
+
     private EditText editTextUsername;
     private EditText editTextPass;
     private Button buttonLogin;
     private TextView tvWithoutAccount;
     private TextView tvRegister;
-    private User userFound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-    private boolean checkCredentials() {
+    private boolean checkCredentials(User userFound) {
 
         if (!editTextUsername.getText().toString().equals(userFound.getUsername())) {
             Toast.makeText(getApplicationContext(),
@@ -82,19 +84,12 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validate()) {
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
                     getUserByUsernameFromDb(editTextUsername.getText().toString());
-
                     // TODO add in shared preferences the id; that check when launching the app if it has
                     // if the id is there, then the login page no longer should pop up
-
-                    if (userFound != null && checkCredentials()){
-                        intent.putExtra(CURRENT_USER, userFound);
-                        startActivity(intent);
-                    }
                 }
             }
+
         });
 
         tvWithoutAccount.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +115,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(User result) {
                 if (result != null) {
-                    userFound = result;
+                    if (checkCredentials(result)) {
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        intent.putExtra(CURRENT_USER, result);
+                        startActivity(intent);
+                    }
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "User ul nu exista", Toast.LENGTH_LONG).show();
                 }
             }
         }.execute(username);
