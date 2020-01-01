@@ -14,6 +14,23 @@ public class Item implements Parcelable {
         this.answer = answer;
     }
 
+    protected Item(Parcel in) {
+        question = in.readString();
+        img = in.readString();
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
+
     public String getQuestion() {
         return question;
     }
