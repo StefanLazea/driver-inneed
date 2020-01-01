@@ -26,6 +26,7 @@ import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.database.model.User;
+import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
     public static final String START_TEST = "Starting the quiz";
@@ -121,6 +122,9 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), QuestionsActivity.class);
                     intent.putExtra("StartKey", START_TEST);
                     startActivity(intent);
+                } else if (menuItem.getItemId() == R.id.nav_delete_account){
+                    CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
+                            RegisterActivity.SHARED_PREF_NAME, -1);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
