@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.ase.damapp.R;
-import eu.ase.damapp.util.Category;
+import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.util.CategoryAdapter;
 
 

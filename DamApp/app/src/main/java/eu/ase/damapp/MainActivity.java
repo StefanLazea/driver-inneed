@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -22,9 +21,8 @@ import java.util.ArrayList;
 
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
-import eu.ase.damapp.util.Category;
+import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.database.model.User;
-import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
     public static final String START_TEST="Starting the quiz";

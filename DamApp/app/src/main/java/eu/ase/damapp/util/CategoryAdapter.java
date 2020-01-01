@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import java.util.List;
 
 import eu.ase.damapp.R;
+import eu.ase.damapp.database.model.Category;
 
 public class CategoryAdapter extends ArrayAdapter<Category> {
     private final Context context;

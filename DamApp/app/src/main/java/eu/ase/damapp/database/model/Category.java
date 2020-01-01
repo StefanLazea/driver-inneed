@@ -1,18 +1,49 @@
-package eu.ase.damapp.util;
+package eu.ase.damapp.database.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "categories")
 public class Category implements Parcelable {
 
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
+    private long id;
+
+    @ColumnInfo(name = "imgPath")
     private int imgDrawable;
+
+    @ColumnInfo(name = "name")
     private String name;
+
+    @ColumnInfo(name = "rating")
     private float rating;
 
+    public Category(long id, int imgDrawable, String name, float rating) {
+        this.id = id;
+        this.imgDrawable = imgDrawable;
+        this.name = name;
+        this.rating = rating;
+    }
+
+    @Ignore
     public Category(int imgDrawable, String name, float rating) {
         this.imgDrawable = imgDrawable;
         this.name = name;
         this.rating = rating;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
