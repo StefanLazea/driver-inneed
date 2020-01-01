@@ -1,6 +1,5 @@
 package eu.ase.damapp.database.service;
 
-import android.app.admin.DelegatedAdminReceiver;
 import android.content.Context;
 import android.os.AsyncTask;
 
@@ -20,7 +19,7 @@ public class UserService {
 
         @Override
         protected User doInBackground(String... strings) {
-            if(strings != null && strings.length!=1){
+            if (strings != null && strings.length != 1) {
                 return null;
             }
 
@@ -28,13 +27,33 @@ public class UserService {
 
             User user = userDao.findUserByUsername(username);
 
-            if(user!=null){
+            if (user != null) {
                 return user;
             }
             return null;
         }
     }
 
+    public static class GetOneById extends AsyncTask<Long, Void, User> {
+        public GetOneById(Context context) {
+            userDao = DatabaseManager.getInstance(context).getUserDao();
+        }
+
+        @Override
+        protected User doInBackground(Long... longs) {
+            if (longs != null && longs.length != 1) {
+                return null;
+            }
+
+            long id = longs[0];
+
+            User user = userDao.findUserById(id);
+            if (user != null) {
+                return user;
+            }
+            return null;
+        }
+    }
 
     public static class Insert extends AsyncTask<User, Void, User> {
 

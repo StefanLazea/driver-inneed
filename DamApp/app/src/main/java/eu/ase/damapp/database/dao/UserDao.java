@@ -14,7 +14,7 @@ import eu.ase.damapp.database.model.User;
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM users WHERE id = :id")
-    User findUserById(String id);
+    User findUserById(long id);
 
     @Query("SELECT * FROM users WHERE username = :username")
     User findUserByUsername(String username);

@@ -2,6 +2,7 @@ package eu.ase.damapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,11 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        long id = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(),
+                RegisterActivity.SHARED_PREF_NAME);
+        if(id != -1){
+            getUserByIdFromDb(id);
+        }
         setContentView(R.layout.activity_login);
         initComponents();
     }
@@ -125,5 +131,18 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         }.execute(username);
+    }
+
+    private void getUserByIdFromDb(long id){
+        new UserService.GetOneById(getApplication()){
+            @Override
+            protected void onPostExecute(User result) {
+                if(result!=null){
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra(CURRENT_USER, result);
+                    startActivity(intent);
+                }
+            }
+        }.execute(id);
     }
 }
