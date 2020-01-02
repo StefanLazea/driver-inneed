@@ -45,4 +45,20 @@ public class CategoryService {
             return null;
         }
     }
+
+    public static class Update extends AsyncTask<Category, Void, Integer> {
+        public Update(Context context) {
+            categoryDao = DatabaseManager
+                    .getInstance(context)
+                    .getCategoryDao();
+        }
+
+        @Override
+        protected Integer doInBackground(Category... categories) {
+            if (categories == null || categories.length != 1) {
+                return -1;
+            }
+            return categoryDao.update(categories[0]);
+        }
+    }
 }
