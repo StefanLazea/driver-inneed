@@ -1,9 +1,12 @@
 package eu.ase.damapp;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,8 @@ public class QuizActivity extends AppCompatActivity {
     private Item quizItem;
     private String currentCategory;
     private TextView tvQuestion;
+    private TextView tvCategory;
+    private RadioGroup rgAnswers;
     private RadioButton rbFirst;
     private RadioButton rbSecond;
     private RadioButton rbThrid;
@@ -28,9 +33,10 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         getExtras();
+        initComponents();
     }
 
-    private void getExtras(){
+    private void getExtras() {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             if (extras.getString(QuestionsFragment.CURRENT_CATEGORY) != null) {
@@ -41,17 +47,48 @@ public class QuizActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
             } else {
                 quizItem = extras.getParcelable(QuestionsFragment.CURRENT_QUESTION);
-                Toast.makeText(getApplicationContext(), "item ul " + quizItem.getQuestion(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), quizItem.getQuestion(), Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private void initComponents(){
+    private void initComponents() {
+        rgAnswers = findViewById(R.id.quiz_rg_answers);
         tvQuestion = findViewById(R.id.quiz_tv_question);
+        tvCategory = findViewById(R.id.quiz_tv_category);
         rbFirst = findViewById(R.id.quiz_rb_first);
         rbSecond = findViewById(R.id.quiz_rb_second);
         rbThrid = findViewById(R.id.quiz_rb_third);
         rbFourth = findViewById(R.id.quiz_rb_fourth);
+        next = findViewById(R.id.quiz_btn_next);
+
+        tvQuestion.setText(quizItem.getQuestion());
+        tvCategory.setText("Categoria: " + currentCategory);
+
+        rbFirst.setText(quizItem.getAnswer().getFirstAnswer());
+        rbSecond.setText(quizItem.getAnswer().getSecondAnswer());
+        rbThrid.setText(quizItem.getAnswer().getThirdAnswer());
+        rbFourth.setText(quizItem.getAnswer().getFourthAnswer());
+
+
+        rgAnswers.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId != -1) {
+                    next.setBackgroundColor(Color.GREEN);
+                }
+            }
+        });
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final RadioButton rb = findViewById(rgAnswers.getCheckedRadioButtonId());
+                String answer = rb.getText().toString();
+                if (answer.equals(quizItem.getAnswer().getCorrect())) {
+                    Toast.makeText(getApplicationContext(), "Hooray", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
