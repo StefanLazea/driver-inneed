@@ -29,7 +29,8 @@ import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String START_TEST = "Starting the quiz";
+    public static final String START_QUIZ = "Starting the quiz";
+    public static final String START_QUIZ_KEY = "StartKey";
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
@@ -119,10 +120,10 @@ public class MainActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                     startActivity(intent);
                 } else if (menuItem.getItemId() == R.id.nav_quiz) {
-                    Intent intent = new Intent(getApplicationContext(), QuestionsActivity.class);
-                    intent.putExtra("StartKey", START_TEST);
+                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
+                    intent.putExtra(START_QUIZ_KEY, START_QUIZ);
                     startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_delete_account){
+                } else if (menuItem.getItemId() == R.id.nav_delete_account) {
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             RegisterActivity.SHARED_PREF_NAME, -1);
                 }

@@ -17,6 +17,7 @@ public class Item implements Parcelable {
     protected Item(Parcel in) {
         question = in.readString();
         img = in.readString();
+        answer = in.readParcelable(Answer.class.getClassLoader());
     }
 
     public static final Creator<Item> CREATOR = new Creator<Item>() {
@@ -72,7 +73,8 @@ public class Item implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(question);
-
+        dest.writeString(img);
+        dest.writeParcelable(answer,flags);
     }
 }
 

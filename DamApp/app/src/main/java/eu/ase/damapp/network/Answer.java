@@ -1,6 +1,9 @@
 package eu.ase.damapp.network;
 
-public class Answer {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Answer implements Parcelable {
     private String firstAnswer;
     private String secondAnswer;
     private String thirdAnswer;
@@ -14,6 +17,26 @@ public class Answer {
         this.fourthAnswer = fourthAnswer;
         this.correct = correct;
     }
+
+    private Answer(Parcel in) {
+        firstAnswer = in.readString();
+        secondAnswer = in.readString();
+        thirdAnswer = in.readString();
+        fourthAnswer = in.readString();
+        correct = in.readString();
+    }
+
+    public static final Creator<Answer> CREATOR = new Creator<Answer>() {
+        @Override
+        public Answer createFromParcel(Parcel in) {
+            return new Answer(in);
+        }
+
+        @Override
+        public Answer[] newArray(int size) {
+            return new Answer[size];
+        }
+    };
 
     public String getFirstAnswer() {
         return firstAnswer;
@@ -64,5 +87,19 @@ public class Answer {
                 ", fourthAnswer='" + fourthAnswer + '\'' +
                 ", correct='" + correct + '\'' +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(firstAnswer);
+        dest.writeString(secondAnswer);
+        dest.writeString(thirdAnswer);
+        dest.writeString(fourthAnswer);
+        dest.writeString(correct);
     }
 }

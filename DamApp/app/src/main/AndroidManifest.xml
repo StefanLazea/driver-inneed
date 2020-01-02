@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity"></activity>
-        <activity android:name=".QuestionsActivity" />
+        <activity android:name=".QuizActivity" />
         <activity android:name=".FormActivity" />
         <activity android:name=".AskActivity" />
         <activity

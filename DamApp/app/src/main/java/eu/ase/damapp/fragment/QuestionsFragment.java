@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import eu.ase.damapp.QuestionsActivity;
+import eu.ase.damapp.QuizActivity;
 import eu.ase.damapp.R;
 import eu.ase.damapp.network.HttpManager;
 import eu.ase.damapp.network.HttpResponse;
@@ -31,6 +31,7 @@ import eu.ase.damapp.network.JsonParser;
 public class QuestionsFragment extends Fragment {
     private static final String URL = "https://api.myjson.com/bins/uqzey";
     public static final String CURRENT_QUESTION = "currentQuestion";
+    public static final String CURRENT_CATEGORY = "currentCategory";
     private HttpResponse httpResponse;
 
     private Button btnMechanics;
@@ -38,6 +39,7 @@ public class QuestionsFragment extends Fragment {
     private Button btnTickets;
     private ListView listViewQuestions;
     private List<Item> selectedResponse = new ArrayList<>();
+    private String categoryName;
 
     public QuestionsFragment() {
         // Required empty public constructor
@@ -89,6 +91,7 @@ public class QuestionsFragment extends Fragment {
                     unSelectedButtons();
                     selectButtonColor(btnMechanics);
                     selectResponse(httpResponse.getMechanics());
+                    categoryName = "Mecanica";
                 }
             }
         });
@@ -103,6 +106,7 @@ public class QuestionsFragment extends Fragment {
                     unSelectedButtons();
                     selectButtonColor(btnSigns);
                     selectResponse(httpResponse.getSigns());
+                    categoryName = "Semne de circulatie";
                 }
             }
         });
@@ -116,6 +120,7 @@ public class QuestionsFragment extends Fragment {
                     unSelectedButtons();
                     selectButtonColor(btnTickets);
                     selectResponse(httpResponse.getTickets());
+                    categoryName = "Contraventii";
                 }
             }
         });
@@ -123,10 +128,11 @@ public class QuestionsFragment extends Fragment {
         listViewQuestions.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), QuestionsActivity.class);
-//                intent.putExtra(CURRENT_QUESTION, selectedResponse.get(position));
-
+                Intent intent = new Intent(getActivity(), QuizActivity.class);
+                intent.putExtra(CURRENT_QUESTION, selectedResponse.get(position));
+                intent.putExtra(CURRENT_CATEGORY, categoryName);
                 Toast.makeText(getContext(), "Intrebarea " + selectedResponse.get(position).getQuestion()
+                        + "categoria " + categoryName
                         , Toast.LENGTH_LONG).show();
 
                 startActivity(intent);
