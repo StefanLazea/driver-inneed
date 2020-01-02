@@ -131,10 +131,6 @@ public class QuestionsFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), QuizActivity.class);
                 intent.putExtra(CURRENT_QUESTION, selectedResponse.get(position));
                 intent.putExtra(CURRENT_CATEGORY, categoryName);
-                Toast.makeText(getContext(), "Intrebarea " + selectedResponse.get(position).getQuestion()
-                        + "categoria " + categoryName
-                        , Toast.LENGTH_LONG).show();
-
                 startActivity(intent);
             }
         });

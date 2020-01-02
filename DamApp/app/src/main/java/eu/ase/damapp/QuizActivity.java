@@ -27,23 +27,21 @@ public class QuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        initComponents();
         getExtras();
     }
 
     private void getExtras(){
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            if (extras.getString(MainActivity.START_QUIZ_KEY) != null) {
-                String message = extras.getString(MainActivity.START_QUIZ_KEY);
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-            }
-            if(extras.getString(QuestionsFragment.CURRENT_QUESTION) != null){
-                quizItem = extras.getParcelable(QuestionsFragment.CURRENT_QUESTION);
-                Toast.makeText(getApplicationContext(), "item ul " + quizItem, Toast.LENGTH_LONG).show();
-            }
-            if(extras.getString(QuestionsFragment.CURRENT_CATEGORY) != null){
+            if (extras.getString(QuestionsFragment.CURRENT_CATEGORY) != null) {
                 currentCategory = extras.getString(QuestionsFragment.CURRENT_CATEGORY);
+            }
+            if (extras.getString("StartKey") != null) {
+                String message = extras.getString("StartKey");
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+            } else {
+                quizItem = extras.getParcelable(QuestionsFragment.CURRENT_QUESTION);
+                Toast.makeText(getApplicationContext(), "item ul " + quizItem.getQuestion(), Toast.LENGTH_LONG).show();
             }
         }
     }
