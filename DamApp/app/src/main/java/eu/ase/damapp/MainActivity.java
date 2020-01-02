@@ -119,10 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.nav_form) {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
                     startActivity(intent);
-                } else if (menuItem.getItemId() == R.id.nav_quiz) {
-                    Intent intent = new Intent(getApplicationContext(), QuizActivity.class);
-                    intent.putExtra(START_QUIZ_KEY, START_QUIZ);
-                    startActivity(intent);
                 } else if (menuItem.getItemId() == R.id.nav_delete_account) {
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             RegisterActivity.SHARED_PREF_NAME, -1);
