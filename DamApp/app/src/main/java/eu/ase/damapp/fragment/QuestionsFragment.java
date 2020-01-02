@@ -1,6 +1,7 @@
 package eu.ase.damapp.fragment;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,7 +24,6 @@ import eu.ase.damapp.network.HttpManager;
 import eu.ase.damapp.network.HttpResponse;
 import eu.ase.damapp.network.Item;
 import eu.ase.damapp.network.JsonParser;
-import eu.ase.damapp.util.CategoryAdapter;
 import eu.ase.damapp.util.QuestionAdapter;
 
 /**
@@ -47,6 +46,7 @@ public class QuestionsFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @SuppressLint("StaticFieldLeak")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -76,10 +76,6 @@ public class QuestionsFragment extends Fragment {
         btnTickets = view.findViewById(R.id.questions_btn_tickets);
 
         listViewQuestions = view.findViewById(R.id.lv_questions);
-//        ArrayAdapter<Item> adapter = new ArrayAdapter<>(
-//                getContext(),
-//                android.R.layout.simple_list_item_1,
-//                selectedResponse);
 
         QuestionAdapter adapter = new QuestionAdapter(
                 getContext(),
@@ -147,7 +143,7 @@ public class QuestionsFragment extends Fragment {
     private void selectResponse(List<Item> list) {
         selectedResponse.clear();
         selectedResponse.addAll(list);
-        ArrayAdapter<Item> adapter = (ArrayAdapter<Item>)
+        ArrayAdapter<Item> adapter = (QuestionAdapter)
                 listViewQuestions.getAdapter();
         adapter.notifyDataSetChanged();
     }
