@@ -22,10 +22,12 @@ public class CategoryAdapter extends ArrayAdapter<Category> {
     private final List<Category> categories;
     private final LayoutInflater layoutInflater;
 
-    public CategoryAdapter(@NonNull Context context,
-                           int resource,
-                           List<Category> categories,
-                           LayoutInflater layoutInflater) {
+    public CategoryAdapter(
+            @NonNull Context context,
+            int resource,
+            List<Category> categories,
+            LayoutInflater layoutInflater
+    ) {
         super(context, resource, categories);
         this.context = context;
         this.resource = resource;

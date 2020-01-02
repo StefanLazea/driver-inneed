@@ -24,6 +24,8 @@ import eu.ase.damapp.network.HttpManager;
 import eu.ase.damapp.network.HttpResponse;
 import eu.ase.damapp.network.Item;
 import eu.ase.damapp.network.JsonParser;
+import eu.ase.damapp.util.CategoryAdapter;
+import eu.ase.damapp.util.QuestionAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -74,10 +76,16 @@ public class QuestionsFragment extends Fragment {
         btnTickets = view.findViewById(R.id.questions_btn_tickets);
 
         listViewQuestions = view.findViewById(R.id.lv_questions);
-        ArrayAdapter<Item> adapter = new ArrayAdapter<>(
+//        ArrayAdapter<Item> adapter = new ArrayAdapter<>(
+//                getContext(),
+//                android.R.layout.simple_list_item_1,
+//                selectedResponse);
+
+        QuestionAdapter adapter = new QuestionAdapter(
                 getContext(),
-                android.R.layout.simple_list_item_1,
-                selectedResponse);
+                R.layout.lv_row_question,
+                selectedResponse,
+                getLayoutInflater());
         listViewQuestions.setAdapter(adapter);
 
         unSelectedButtons();
