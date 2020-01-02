@@ -1,5 +1,6 @@
 package eu.ase.damapp.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import eu.ase.damapp.R;
 import eu.ase.damapp.database.model.Category;
+import eu.ase.damapp.database.service.CategoryService;
 import eu.ase.damapp.util.CategoryAdapter;
 
 
@@ -25,14 +27,16 @@ public class HomeFragment extends Fragment {
     private ListView lvCategories;
     private List<Category> categories = new ArrayList<>();
     public static final String CATEGORY_KEY = "categoriesKey";
+    private int selectedCategoryIndex;
     private static final int MIN_RATING_PICKER = 0;
     private static final int MAX_RATING_PICKER = 10;
+    private CategoryAdapter categoryAdapter;
 
     public HomeFragment() {
     }
 
     public void notifyInternal() {
-        CategoryAdapter categoryAdapter = (CategoryAdapter) lvCategories.getAdapter();
+        categoryAdapter = (CategoryAdapter) lvCategories.getAdapter();
         categoryAdapter.notifyDataSetChanged();
     }
 
@@ -54,11 +58,11 @@ public class HomeFragment extends Fragment {
         }
 
         if (getContext() != null) {
-            CategoryAdapter adapter = new CategoryAdapter(getContext(),
+            categoryAdapter = new CategoryAdapter(getContext(),
                     R.layout.lv_row_view,
                     categories,
                     getLayoutInflater());
-            lvCategories.setAdapter(adapter);
+            lvCategories.setAdapter(categoryAdapter);
         }
 
         lvCategories.setOnItemClickListener(lvCategoriesSelectedItem());
@@ -71,7 +75,7 @@ public class HomeFragment extends Fragment {
                 final NumberPicker picker = new NumberPicker(getActivity());
                 picker.setMinValue(MIN_RATING_PICKER);
                 picker.setMaxValue(MAX_RATING_PICKER);
-
+                selectedCategoryIndex = position;
                 ratingPicker(position, picker);
             }
         };
@@ -99,16 +103,27 @@ public class HomeFragment extends Fragment {
         dialog.show();
     }
 
-    private void updateCategory(int value, int position) {
+    private void updateCategory(float value, int position) {
         if (value == 0) {
             Toast.makeText(getContext(), getString(R.string.home_rating_below), Toast.LENGTH_LONG).show();
             return;
         }
-
-        Toast.makeText(getContext(), "id ul categoriei"+categories.get(position).getId(), Toast.LENGTH_LONG).show();
-        categories.get(position).setRating(value);
-        CategoryAdapter adapter = (CategoryAdapter) lvCategories.getAdapter();
-        adapter.notifyDataSetChanged();
+        Category category = categories.get(position);
+        category.setRating(value);
+        updateCategoryInDatabase(categories.get(position));
     }
 
+    @SuppressLint("StaticFieldLeak")
+    private void updateCategoryInDatabase(final Category category){
+        category.setId(categories.get(selectedCategoryIndex).getId());
+        new CategoryService.Update(getContext()){
+            @Override
+            protected void onPostExecute(Integer result) {
+                if(result ==1){
+                    categoryAdapter.notifyDataSetChanged();
+                    Toast.makeText(getContext(), "Update done " + category, Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(category);
+    }
 }
