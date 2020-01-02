@@ -114,12 +114,12 @@ public class HomeFragment extends Fragment {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void updateCategoryInDatabase(final Category category){
+    private void updateCategoryInDatabase(final Category category) {
         category.setId(categories.get(selectedCategoryIndex).getId());
-        new CategoryService.Update(getContext()){
+        new CategoryService.Update(getContext()) {
             @Override
             protected void onPostExecute(Integer result) {
-                if(result ==1){
+                if (result == 1) {
                     categoryAdapter.notifyDataSetChanged();
                     Toast.makeText(getContext(), "Update done " + category, Toast.LENGTH_LONG).show();
                 }

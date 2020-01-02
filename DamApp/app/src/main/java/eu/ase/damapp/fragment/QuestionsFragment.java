@@ -157,6 +157,4 @@ public class QuestionsFragment extends Fragment {
     private void selectButtonColor(Button button) {
         button.setBackgroundColor(Color.BLUE);
     }
-
-
 }

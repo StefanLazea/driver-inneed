@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configNavigation();
         initComponents();
-//        initCategories();
+        initCategories();
         getAllCategoriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
@@ -52,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     private void getCurrentUser() {
         if (getIntent().getExtras() != null) {
             User currentUser = getIntent().getExtras().getParcelable(LoginActivity.CURRENT_USER);
-//            long id = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME);
             updateMenuDetails(currentUser);
         }
     }

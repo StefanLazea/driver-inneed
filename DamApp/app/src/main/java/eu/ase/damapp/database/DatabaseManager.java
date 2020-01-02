@@ -7,13 +7,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import eu.ase.damapp.database.dao.CategoryDao;
-import eu.ase.damapp.database.dao.UserCategoriesDao;
+import eu.ase.damapp.database.dao.FaqDao;
 import eu.ase.damapp.database.dao.UserDao;
 import eu.ase.damapp.database.model.Category;
+import eu.ase.damapp.database.model.Faq;
 import eu.ase.damapp.database.model.User;
-import eu.ase.damapp.database.model.UserCategories;
 
-@Database(entities = {User.class, Category.class, UserCategories.class}, exportSchema = false, version = 1)
+@Database(entities = {User.class, Category.class, Faq.class}, exportSchema = false, version = 1)
 public abstract class DatabaseManager extends RoomDatabase {
     private static final String DB_NAME = "driving_school";
     private static DatabaseManager dbManager;
@@ -35,5 +35,5 @@ public abstract class DatabaseManager extends RoomDatabase {
 
     public abstract UserDao getUserDao();
     public abstract CategoryDao getCategoryDao();
-    public abstract UserCategoriesDao getUserCategoryDao();
+    public abstract FaqDao getFaqDao();
 }
