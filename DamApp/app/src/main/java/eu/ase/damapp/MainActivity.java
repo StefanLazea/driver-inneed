@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configNavigation();
         initComponents();
-        initCategories();
+//        initCategories();
         getAllCategoriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
@@ -118,6 +118,9 @@ public class MainActivity extends AppCompatActivity {
                     openFragment();
                 } else if (menuItem.getItemId() == R.id.nav_form) {
                     Intent intent = new Intent(getApplicationContext(), FormActivity.class);
+                    startActivity(intent);
+                } else if (menuItem.getItemId() == R.id.nav_faq) {
+                    Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
                     startActivity(intent);
                 } else if (menuItem.getItemId() == R.id.nav_delete_account) {
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),

@@ -60,6 +60,7 @@
     <string name="register_confirm_message_empty">Password confirmation field is empty</string>
     <string name="register_pass_mismatch">Parolele nu corespund</string>
     <string name="login_user_not_found">User-ul nu exista</string>
+    <string name="menu_faq">FAQ</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>

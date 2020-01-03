@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_person_black_24dp"
             android:title="@string/form_students_menu"/>
         <item
+            android:id="@+id/nav_faq"
+            android:icon="@drawable/ic_library_books_black_24dp"
+            android:title="@string/menu_faq"/>
+        <item
             android:id="@+id/nav_delete_account"
             android:icon="@drawable/ic_delete_black_24dp"
             android:title="@string/menu_delete"/>
