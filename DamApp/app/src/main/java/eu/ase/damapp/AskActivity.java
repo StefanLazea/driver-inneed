@@ -1,8 +1,6 @@
 package eu.ase.damapp;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +24,10 @@ public class AskActivity extends AppCompatActivity {
     private Spinner spinner;
     private Button btnSend;
     private TextView tvRatingApp;
+    private NumberPicker numberPicker;
     private Faq faq;
     private long userId;
-
+    private float selectedRating;
     //todo database storage of this questions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +46,19 @@ public class AskActivity extends AppCompatActivity {
                         R.array.quiz_questions_categories,
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(categoriesAdapter);
-
+        numberPicker = (NumberPicker)findViewById(R.id.ask_np_rating);
         tvRatingApp = findViewById(R.id.ask_tv_ratingapp);
 
-        tvRatingApp.setOnClickListener(new View.OnClickListener() {
+        numberPicker.setMinValue(HomeFragment.MIN_RATING_PICKER);
+        numberPicker.setMaxValue(HomeFragment.MAX_RATING_PICKER);
+
+        numberPicker.setWrapSelectorWheel(true);
+
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
-            public void onClick(View v) {
-                NumberPicker picker = new NumberPicker(AskActivity.this);
-                picker.setMinValue(HomeFragment.MIN_RATING_PICKER);
-                picker.setMaxValue(HomeFragment.MIN_RATING_PICKER);
-                ratingPicker(picker);
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                selectedRating =(float) newVal;
+                Toast.makeText(getApplicationContext(), "val aleasa "+ newVal, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -72,7 +74,7 @@ public class AskActivity extends AppCompatActivity {
 
                     String category = spinner.getSelectedItem().toString();
 
-                    faq = new Faq(etQuestion.getText().toString(), category, 5, userId);
+                    faq = new Faq(etQuestion.getText().toString(), category, selectedRating, userId);
                     insertCategoryIntoDB(faq);
                     Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
                     startActivity(intent);
@@ -82,32 +84,6 @@ public class AskActivity extends AppCompatActivity {
 
     }
 
-    private void ratingPicker(final NumberPicker picker) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(AskActivity.this);
-        builder
-                .setTitle(getString(R.string.home_ratingPicker_title))
-                .setMessage(getString(R.string.home_ratingPicker_message))
-                .setPositiveButton(getString(R.string.home_button_ok), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        setRating(picker.getValue());
-                    }
-                })
-                .setNegativeButton(getString(R.string.home_cancel_button),
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            }
-                        });
-        builder.setView(picker);
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-
-    private void setRating(float number) {
-
-    }
 
     private boolean validate() {
         if (etQuestion.getText().toString().trim().isEmpty() || etQuestion == null) {
