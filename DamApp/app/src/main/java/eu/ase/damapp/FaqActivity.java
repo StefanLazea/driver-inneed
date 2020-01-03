@@ -42,10 +42,7 @@ public class FaqActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
-        initComponents();
         getNumberOfEntries();
-        getSumForAppRating();
-        saveInfo();
     }
 
     public void notifyInternal() {
@@ -163,6 +160,13 @@ public class FaqActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Integer result) {
                 numerOfEntries = result;
+                if (result > 0) {
+                    initComponents();
+                    getSumForAppRating();
+                    saveInfo();
+
+                }
+
             }
         }.execute();
     }

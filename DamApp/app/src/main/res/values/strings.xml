@@ -84,5 +84,6 @@
         <item>categoria CE</item>
         <item>categoria D</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 
 </resources>

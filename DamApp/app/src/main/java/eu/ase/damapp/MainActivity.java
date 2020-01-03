@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configNavigation();
         initComponents();
-//        initCategories();
+        initCategories();
         getAllCategoriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.nav_delete_account) {
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             RegisterActivity.SHARED_PREF_NAME, -1);
+                } else if (menuItem.getItemId() == R.id.nav_maps) {
+                    Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
+                    startActivity(intent);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
