@@ -16,15 +16,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.database.model.Faq;
+import eu.ase.damapp.database.service.CategoryService;
 import eu.ase.damapp.database.service.FaqService;
 import eu.ase.damapp.util.CustomSharedPreferences;
 import eu.ase.damapp.util.FaqAdapter;
 
 public class FaqActivity extends AppCompatActivity {
     public static final String FILE_NAME = "rapoarte.txt";
+    private static final String BREAK_LINE = "\n";
     private TextView tvRatingLabel;
-    private TextView tvCategoryLabel;
     private TextView tvRating;
     private TextView tvCategory;
     private List<Faq> faqs = new ArrayList<>();
@@ -33,6 +35,7 @@ public class FaqActivity extends AppCompatActivity {
     private long userId;
     private FaqAdapter faqAdapter;
     private float numerOfEntries;
+    private Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,6 @@ public class FaqActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-        tvCategoryLabel = findViewById(R.id.faq_tv_category_label);
         tvRatingLabel = findViewById(R.id.faq_tv_rating_label);
         tvRating = findViewById(R.id.faq_tv_rating);
         tvCategory = findViewById(R.id.faq_tv_category);
@@ -72,11 +74,30 @@ public class FaqActivity extends AppCompatActivity {
 
                 try {
                     fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-                    fos.write("Raportarea facuta pe baza intrebarilor frecvente\n".getBytes());
-                    fos.write(tvRatingLabel.getText().toString().getBytes());
-                    fos.write("\nAplicatia a primit rating-ul mediu la intrebarea cu categoria:\n".getBytes());
-                    Toast.makeText(getApplicationContext(), "Saved to " + getFilesDir() + "/" + FILE_NAME,
+                    fos.write(getString(R.string.faq_header_text_file).getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+                    String rating = tvRatingLabel.getText().toString().concat(" "
+                            + tvRating.getText().toString());
+                    fos.write(rating.concat(BREAK_LINE).getBytes());
+                    fos.write(getString(R.string.faq_category_header_text_file).getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+                    fos.write(tvCategory.getText().toString().getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+
+                    fos.write(getString(R.string.faq_questions_header_text_file).getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+                    fos.write(BREAK_LINE.getBytes());
+                    for (Faq faq : faqs) {
+                        fos.write(faq.toString().getBytes());
+                        fos.write(BREAK_LINE.getBytes());
+                    }
+
+                    Toast.makeText(getApplicationContext(),
+                            getString(R.string.faq_file_saved_to)
+                                    + getFilesDir() + "/" + FILE_NAME,
                             Toast.LENGTH_LONG).show();
+
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -153,5 +174,17 @@ public class FaqActivity extends AppCompatActivity {
                 }
             }
         }.execute(userId);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getCategoryByName(String categoryName) {
+        new CategoryService.GetCategoryByName(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Category result) {
+                if (result != null) {
+                    category = result;
+                }
+            }
+        }.execute(categoryName);
     }
 }

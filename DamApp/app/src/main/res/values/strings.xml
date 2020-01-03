@@ -65,6 +65,10 @@
     <string name="faq_btn_save">Salveaza datele</string>
     <string name="faq_tv_rating_app_label">Rating-ul minim al aplicatie/categorie</string>
     <string name="faq_tv_averrage_rating_label">Media rating-ului aplicatiei este de</string>
+    <string name="faq_header_text_file">Raportarea facuta pe baza intrebarilor frecvente</string>
+    <string name="faq_category_header_text_file">Aplicatia a primit rating-ul mediu la intrebarea cu categoria:</string>
+    <string name="faq_file_saved_to">Saved to</string>
+    <string name="faq_questions_header_text_file">Intrebarile puse de user-ul curent</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>

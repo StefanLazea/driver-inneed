@@ -83,9 +83,7 @@ public class AskActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
-
 
     private boolean validate() {
         if (etQuestion.getText().toString().trim().isEmpty() || etQuestion == null) {
