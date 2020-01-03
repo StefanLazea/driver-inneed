@@ -96,8 +96,6 @@ public class FaqActivity extends AppCompatActivity {
                                     + getFilesDir() + "/" + FILE_NAME,
                             Toast.LENGTH_LONG).show();
 
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } finally {
@@ -183,16 +181,3 @@ public class FaqActivity extends AppCompatActivity {
         }.execute(userId);
     }
 }
-//
-//    @SuppressLint("StaticFieldLeak")
-//    private void getCategoryByName(String categoryName) {
-//        new CategoryService.GetCategoryByName(getApplicationContext()) {
-//            @Override
-//            protected void onPostExecute(Category result) {
-//                if (result != null) {
-//                    category = result;
-//                }
-//            }
-//        }.execute(categoryName);
-//    }
-//}

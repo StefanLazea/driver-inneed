@@ -3,12 +3,32 @@ package eu.ase.damapp.util;
 import java.util.Date;
 
 public class Form {
+    private String id;
     private String schoolName;
     private String licenceCategory;
     private Date dateTheoreticalExam;
     private Date datePracticalExam;
     private String sex;
     private boolean schoolStarted;
+
+    public Form(){
+
+    }
+    public Form(String id, String schoolName,
+                String licenceCategory,
+                Date dateTheoreticalExam,
+                Date datePracticalExam,
+                String sex,
+                boolean schoolStarted
+    ) {
+        this.id = id;
+        this.schoolName = schoolName;
+        this.licenceCategory = licenceCategory;
+        this.dateTheoreticalExam = dateTheoreticalExam;
+        this.datePracticalExam = datePracticalExam;
+        this.sex = sex;
+        this.schoolStarted = schoolStarted;
+    }
 
     public Form(String schoolName, String licenceCategory, Date dateTheoreticalExam, Date datePracticalExam, String sex, boolean schoolStarted) {
         this.schoolName = schoolName;
@@ -17,6 +37,14 @@ public class Form {
         this.datePracticalExam = datePracticalExam;
         this.sex = sex;
         this.schoolStarted = schoolStarted;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSchoolName() {

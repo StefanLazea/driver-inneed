@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "597763434795",
+    "firebase_url": "https://driver-inneed.firebaseio.com",
+    "project_id": "driver-inneed",
+    "storage_bucket": "driver-inneed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597763434795:android:568e80ecf24796bfd4bd6e",
+        "android_client_info": {
+          "package_name": "eu.ase.damapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597763434795-gqm7igvllbofu4ol6ugpufeumpidtsoo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "eu.ase.damapp",
+            "certificate_hash": "b95b4fc6560a925b96ba364a161644f347995970"
+          }
+        },
+        {
+          "client_id": "597763434795-hkou6lkbio5rdo3qfqmc8pgfj05j2mqu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6TcTwX523gTuS0Px-0ejIEFy2JdWB7wM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597763434795-hkou6lkbio5rdo3qfqmc8pgfj05j2mqu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

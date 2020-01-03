@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -16,9 +17,15 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -26,6 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import eu.ase.damapp.util.CustomSharedPreferences;
 import eu.ase.damapp.util.Form;
 
 public class FormActivity extends AppCompatActivity {
@@ -41,13 +49,21 @@ public class FormActivity extends AppCompatActivity {
     private CheckBox checkBoxSchool;
     private TextInputEditText school;
     private RadioGroup rgSex;
+    private DatabaseReference mDatabase;
+    private String userId;
+    private boolean hasEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        userId = String.valueOf(CustomSharedPreferences
+                .getIdFromPreferences(getApplicationContext(),
+                        RegisterActivity.SHARED_PREF_NAME));
         initAttributes();
         initComponents();
+
     }
 
     private void initAttributes() {
@@ -101,14 +117,34 @@ public class FormActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateFormData()) {
                     Form formResult = createForm();
+                    formResult.setId("details" + userId);
+                    mDatabase.child("details" + userId).setValue(formResult);
+
                     Toast.makeText(getApplicationContext(), "" + formResult, Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         });
-    }
 
+        mDatabase.child("details" + userId).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Form data = dataSnapshot.getValue(Form.class);
+                Log.i("firebase",
+                        data + "ura");
+                school.setText(data.getSchoolName());
+                Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("ReportActivity", "Data is not available");
+
+            }
+        });
+
+    }
 
     private Form createForm() {
         Date dateTheoretical = convertStringToDate(form_tv_date_theoretical.getText().toString());
