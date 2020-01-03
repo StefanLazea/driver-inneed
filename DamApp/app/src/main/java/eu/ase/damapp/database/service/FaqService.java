@@ -53,7 +53,8 @@ public class FaqService {
             if (results != null && results.length != 1) {
                 return null;
             }
-            float sum = results[0];
+            long id = results[0];
+            float sum = faqDao.selectSumAppRatingByUserId(id);
             if (sum > 0) {
                 return sum;
             }
@@ -61,14 +62,35 @@ public class FaqService {
         }
     }
 
-    public static class GetNumberOfEntries extends AsyncTask<Void, Void, Integer>{
+    public static class GetNumberOfEntries extends AsyncTask<Void, Void, Integer> {
         public GetNumberOfEntries(Context context) {
             faqDao = DatabaseManager.getInstance(context).getFaqDao();
         }
 
         @Override
         protected Integer doInBackground(Void... results) {
-           return faqDao.countEntries();
+            return faqDao.countEntries();
+        }
+    }
+
+    public static class GetCategoryNameGivenUserIdAndRating extends AsyncTask<Long, Void, String> {
+        public GetCategoryNameGivenUserIdAndRating(Context context) {
+            faqDao = DatabaseManager.getInstance(context).getFaqDao();
+        }
+
+        @Override
+        protected String doInBackground(Long... results) {
+            if (results != null && results.length != 1) {
+                return null;
+            }
+
+            long id = results[0];
+            String response = faqDao.selectCategoryNameForUserIdAndBelowNumber(id);
+
+            if (!response.isEmpty()) {
+                return response;
+            }
+            return null;
         }
     }
 }

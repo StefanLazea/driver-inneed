@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,14 +23,16 @@ public class FaqActivity extends AppCompatActivity {
     private ListView lvFaq;
     private long userId;
     private FaqAdapter faqAdapter;
+    private float numerOfEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
         initComponents();
+        getNumberOfEntries();
         getSumForAppRating();
-
+        getCategory();
     }
 
     public void notifyInternal() {
@@ -80,7 +83,32 @@ public class FaqActivity extends AppCompatActivity {
             protected void onPostExecute(Float result) {
                 if (result > 0) {
                     String curr = tvRatingLabel.getText().toString();
-                    tvRatingLabel.setText(curr + result.toString());
+                    float averageRating = result / numerOfEntries;
+                    String finalValue = curr + String.valueOf(averageRating);
+                    tvRatingLabel.setText(finalValue);
+                }
+            }
+        }.execute(userId);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getNumberOfEntries() {
+        new FaqService.GetNumberOfEntries(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Integer result) {
+                numerOfEntries = result;
+            }
+        }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getCategory() {
+        new FaqService.GetCategoryNameGivenUserIdAndRating(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(String result) {
+                if (result != null) {
+                    String displayValue = tvCategoryLabel.getText().toString().concat(result);
+                    tvCategoryLabel.setText(displayValue);
                 }
             }
         }.execute(userId);

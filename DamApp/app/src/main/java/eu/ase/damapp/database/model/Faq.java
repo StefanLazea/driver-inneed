@@ -16,7 +16,7 @@ import androidx.room.PrimaryKey;
                 entity = User.class,
                 parentColumns = "id",
                 childColumns = "idUserFaq"),
-        indices = {@Index("idUserFaq")}
+        indices = {@Index("application_rating"),@Index("idUserFaq")}
 
 )
 public class Faq implements Parcelable {

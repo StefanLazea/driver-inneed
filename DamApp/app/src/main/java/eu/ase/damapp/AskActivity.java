@@ -74,6 +74,9 @@ public class AskActivity extends AppCompatActivity {
                     String category = spinner.getSelectedItem().toString();
 
                     faq = new Faq(etQuestion.getText().toString(), category, selectedRating, userId);
+                    Toast.makeText(getApplicationContext(), String.valueOf(selectedRating
+                            ),
+                            Toast.LENGTH_LONG).show();
                     insertCategoryIntoDB(faq);
                     Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
                     startActivity(intent);
