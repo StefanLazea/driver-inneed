@@ -42,4 +42,22 @@ public class FaqService {
             return null;
         }
     }
+
+    public static class GetSum extends AsyncTask<Long, Void, Float> {
+        public GetSum(Context context) {
+            faqDao = DatabaseManager.getInstance(context).getFaqDao();
+        }
+
+        @Override
+        protected Float doInBackground(Long... results) {
+            if (results != null && results.length != 1) {
+                return null;
+            }
+            float sum = results[0];
+            if (sum > 0) {
+                return sum;
+            }
+            return null;
+        }
+    }
 }
