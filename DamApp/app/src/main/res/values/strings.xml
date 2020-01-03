@@ -62,6 +62,9 @@
     <string name="login_user_not_found">User-ul nu exista</string>
     <string name="menu_faq">FAQ</string>
     <string name="ask_new_question_message">Intrebare adaugata</string>
+    <string name="faq_btn_save">Salveaza datele</string>
+    <string name="faq_tv_rating_app_label">Rating-ul minim al aplicatie/categorie</string>
+    <string name="faq_tv_averrage_rating_label">Media rating-ului aplicatiei este de</string>
 
     <string-array name="quiz_questions_categories">
         <item>Mecanica</item>

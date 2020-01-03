@@ -19,4 +19,7 @@ public interface CategoryDao {
 
     @Update
     int update(Category category);
+
+    @Query("SELECT * FROM  categories WHERE name=:categoryName")
+    Category getCategoryByName(String categoryName);
 }

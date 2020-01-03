@@ -11,9 +11,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="29dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="60dp"
         android:layout_marginBottom="10dp"
-        android:text="Media rating-ului aplicatiei este de "
+        android:text="@string/faq_tv_averrage_rating_label"
         app:layout_constraintBottom_toTopOf="@+id/faq_tv_category_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -25,7 +25,7 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-        android:text="Categoria cu cel mai mic rating este  "
+        android:text="@string/faq_tv_rating_app_label"
         app:layout_constraintBottom_toTopOf="@+id/faq_lv"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating_label" />
@@ -35,10 +35,45 @@
         android:layout_width="409dp"
         android:layout_height="606dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faq_tv_category_label" />
+
+    <Button
+        android:id="@+id/faq_btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="234dp"
+        android:text="@string/faq_btn_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/faq_tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="62dp"
+        android:layout_marginBottom="18dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/faq_tv_category"
+        app:layout_constraintStart_toEndOf="@+id/faq_tv_rating_label"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/faq_tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="18dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/faq_tv_category_label"
+        app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

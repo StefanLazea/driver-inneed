@@ -61,4 +61,26 @@ public class CategoryService {
             return categoryDao.update(categories[0]);
         }
     }
+
+    public static class GetCategoryByName extends AsyncTask<String, Void, Category> {
+        public GetCategoryByName(Context context) {
+            categoryDao = DatabaseManager.getInstance(context).getCategoryDao();
+        }
+
+        @Override
+        protected Category doInBackground(String... strings) {
+            if (strings != null && strings.length != 1) {
+                return null;
+            }
+
+            String name = strings[0];
+
+            Category category = categoryDao.getCategoryByName(name);
+
+            if (name != null) {
+                return category;
+            }
+            return null;
+        }
+    }
 }
