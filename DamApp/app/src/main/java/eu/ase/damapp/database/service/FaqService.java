@@ -60,4 +60,15 @@ public class FaqService {
             return null;
         }
     }
+
+    public static class GetNumberOfEntries extends AsyncTask<Void, Void, Integer>{
+        public GetNumberOfEntries(Context context) {
+            faqDao = DatabaseManager.getInstance(context).getFaqDao();
+        }
+
+        @Override
+        protected Integer doInBackground(Void... results) {
+           return faqDao.countEntries();
+        }
+    }
 }

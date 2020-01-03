@@ -132,4 +132,5 @@ public class AskActivity extends AppCompatActivity {
             }
         }.execute(faq);
     }
+
 }

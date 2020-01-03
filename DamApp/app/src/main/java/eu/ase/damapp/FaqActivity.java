@@ -16,7 +16,7 @@ import eu.ase.damapp.util.CustomSharedPreferences;
 import eu.ase.damapp.util.FaqAdapter;
 
 public class FaqActivity extends AppCompatActivity {
-    private TextView tvQuestionLabel;
+    private TextView tvRatingLabel;
     private TextView tvCategoryLabel;
     private List<Faq> faqs = new ArrayList<>();
     private ListView lvFaq;
@@ -28,6 +28,7 @@ public class FaqActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
         initComponents();
+        getSumForAppRating();
 
     }
 
@@ -38,7 +39,7 @@ public class FaqActivity extends AppCompatActivity {
 
     private void initComponents() {
         tvCategoryLabel = findViewById(R.id.faq_tv_category_label);
-        tvQuestionLabel = findViewById(R.id.faq_tv_rating_label);
+        tvRatingLabel = findViewById(R.id.faq_tv_rating_label);
         lvFaq = findViewById(R.id.faq_lv);
         userId = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME);
         if (userId != -1) {
@@ -58,16 +59,29 @@ public class FaqActivity extends AppCompatActivity {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private void getFaqsFromDb(){
-        new FaqService.GetAll(getApplicationContext()){
+    private void getFaqsFromDb() {
+        new FaqService.GetAll(getApplicationContext()) {
             @Override
             protected void onPostExecute(List<Faq> results) {
-                if(results!=null){
+                if (results != null) {
                     faqs.clear();
                     faqs.addAll(results);
                     notifyInternal();
                 }
             }
         }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getSumForAppRating() {
+        new FaqService.GetSum(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Float result) {
+                if (result > 0) {
+                    String curr = tvRatingLabel.getText().toString();
+                    tvRatingLabel.setText(curr + result.toString());
+                }
+            }
+        }.execute(userId);
     }
 }

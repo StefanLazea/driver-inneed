@@ -16,6 +16,9 @@ public interface FaqDao {
     @Insert
     long insert(Faq faq);
 
+    @Query("SELECT count(*) FROM faq")
+    int countEntries();
+
     @Query("SELECT sum(application_rating) FROM faq WHERE idUserFaq=:id")
     float selectSumAppRatingByUserId(long id);
 

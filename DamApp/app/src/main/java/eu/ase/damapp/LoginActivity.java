@@ -132,6 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         }.execute(username);
     }
 
+    @SuppressLint("StaticFieldLeak")
     private void getUserByIdFromDb(long id) {
         new UserService.GetOneById(getApplication()) {
             @Override
