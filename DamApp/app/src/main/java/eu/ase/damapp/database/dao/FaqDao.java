@@ -22,6 +22,6 @@ public interface FaqDao {
     @Query("SELECT SUM(application_rating) FROM faq WHERE idUserFaq=:id")
     float selectSumAppRatingByUserId(long id);
 
-    @Query("SELECT question_category FROM faq WHERE idUserFaq=:id and application_rating < 5")
+    @Query("SELECT question_category FROM faq WHERE idUserFaq=:id and application_rating < 10")
     String selectCategoryNameForUserIdAndBelowNumber(long id);
 }

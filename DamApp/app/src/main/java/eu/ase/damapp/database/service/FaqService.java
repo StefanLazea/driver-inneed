@@ -87,7 +87,7 @@ public class FaqService {
             long id = results[0];
             String response = faqDao.selectCategoryNameForUserIdAndBelowNumber(id);
 
-            if (!response.isEmpty()) {
+            if (response!=null) {
                 return response;
             }
             return null;

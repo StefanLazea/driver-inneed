@@ -37,6 +37,7 @@ public class FaqActivity extends AppCompatActivity {
     private float numerOfEntries;
     private Category category;
 
+    //todo dummy data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +45,6 @@ public class FaqActivity extends AppCompatActivity {
         initComponents();
         getNumberOfEntries();
         getSumForAppRating();
-        getCategory();
         saveInfo();
     }
 
@@ -64,6 +64,7 @@ public class FaqActivity extends AppCompatActivity {
         if (userId != -1) {
             populateListView();
         }
+        getCategory();
     }
 
     private void saveInfo() {
@@ -136,6 +137,8 @@ public class FaqActivity extends AppCompatActivity {
                     faqs.clear();
                     faqs.addAll(results);
                     notifyInternal();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Nu exista date", Toast.LENGTH_LONG).show();
                 }
             }
         }.execute();
@@ -175,16 +178,17 @@ public class FaqActivity extends AppCompatActivity {
             }
         }.execute(userId);
     }
-
-    @SuppressLint("StaticFieldLeak")
-    private void getCategoryByName(String categoryName) {
-        new CategoryService.GetCategoryByName(getApplicationContext()) {
-            @Override
-            protected void onPostExecute(Category result) {
-                if (result != null) {
-                    category = result;
-                }
-            }
-        }.execute(categoryName);
-    }
 }
+//
+//    @SuppressLint("StaticFieldLeak")
+//    private void getCategoryByName(String categoryName) {
+//        new CategoryService.GetCategoryByName(getApplicationContext()) {
+//            @Override
+//            protected void onPostExecute(Category result) {
+//                if (result != null) {
+//                    category = result;
+//                }
+//            }
+//        }.execute(categoryName);
+//    }
+//}
