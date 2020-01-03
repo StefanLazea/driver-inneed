@@ -28,7 +28,7 @@ public class AskActivity extends AppCompatActivity {
     private Faq faq;
     private long userId;
     private float selectedRating;
-    //todo database storage of this questions
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +58,6 @@ public class AskActivity extends AppCompatActivity {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
                 selectedRating =(float) newVal;
-                Toast.makeText(getApplicationContext(), "val aleasa "+ newVal, Toast.LENGTH_LONG).show();
             }
         });
 

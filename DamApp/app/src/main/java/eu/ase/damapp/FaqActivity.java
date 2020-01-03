@@ -41,7 +41,8 @@ public class FaqActivity extends AppCompatActivity {
         tvCategoryLabel = findViewById(R.id.faq_tv_category_label);
         tvRatingLabel = findViewById(R.id.faq_tv_rating_label);
         lvFaq = findViewById(R.id.faq_lv);
-        userId = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME);
+        userId = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(),
+                RegisterActivity.SHARED_PREF_NAME);
         if (userId != -1) {
             populateListView();
         }
@@ -50,7 +51,7 @@ public class FaqActivity extends AppCompatActivity {
     private void populateListView() {
         if (getApplicationContext() != null) {
             faqAdapter = new FaqAdapter(getApplicationContext(),
-                    R.layout.lv_row_question,
+                    R.layout.lv_row_faq,
                     faqs,
                     getLayoutInflater());
             lvFaq.setAdapter(faqAdapter);

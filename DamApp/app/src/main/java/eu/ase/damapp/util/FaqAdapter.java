@@ -41,15 +41,25 @@ public class FaqAdapter extends ArrayAdapter<Faq> {
         Faq faq = faqs.get(position);
         if (faq != null) {
             addName(view, faq.getQuestion());
+            addRating(view, faq.getApplicationRating());
         }
         return view;
     }
 
     private void addName(View view, String question) {
-        TextView textView = view.findViewById(R.id.lv_row_question);
+        TextView textView = view.findViewById(R.id.lv_row_ask_question);
         if (question != null && !question.trim().isEmpty()) {
             textView.setText(question);
         } else {
+            textView.setText("-");
+        }
+    }
+
+    private void addRating(View view, float rating){
+        TextView textView = view.findViewById(R.id.lv_row_ask_rating);
+        if(rating > 0){
+            textView.setText(String.valueOf(rating));
+        }else{
             textView.setText("-");
         }
     }
