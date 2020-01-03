@@ -28,6 +28,7 @@ public class FaqActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
         initComponents();
+
     }
 
     public void notifyInternal() {
@@ -52,6 +53,7 @@ public class FaqActivity extends AppCompatActivity {
                     faqs,
                     getLayoutInflater());
             lvFaq.setAdapter(faqAdapter);
+            getFaqsFromDb();
         }
     }
 

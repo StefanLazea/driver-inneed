@@ -1,30 +1,40 @@
 package eu.ase.damapp;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.NumberPicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import eu.ase.damapp.database.model.Faq;
 import eu.ase.damapp.database.service.FaqService;
+import eu.ase.damapp.fragment.HomeFragment;
+import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class AskActivity extends AppCompatActivity {
     private EditText etQuestion;
     private Spinner spinner;
     private Button btnSend;
+    private TextView tvRatingApp;
+    private Faq faq;
+    private long userId;
 
     //todo database storage of this questions
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ask);
+        userId = CustomSharedPreferences.getIdFromPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME);
         initComponents();
     }
 
@@ -38,6 +48,18 @@ public class AskActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(categoriesAdapter);
 
+        tvRatingApp = findViewById(R.id.ask_tv_ratingapp);
+
+        tvRatingApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NumberPicker picker = new NumberPicker(AskActivity.this);
+                picker.setMinValue(HomeFragment.MIN_RATING_PICKER);
+                picker.setMaxValue(HomeFragment.MIN_RATING_PICKER);
+                ratingPicker(picker);
+            }
+        });
+
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,11 +69,43 @@ public class AskActivity extends AppCompatActivity {
                             getString(R.string.ask_success_message),
                             Toast.LENGTH_LONG
                     ).show();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                    String category = spinner.getSelectedItem().toString();
+
+                    faq = new Faq(etQuestion.getText().toString(), category, 5, userId);
+                    insertCategoryIntoDB(faq);
+                    Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
                     startActivity(intent);
                 }
             }
         });
+
+    }
+
+    private void ratingPicker(final NumberPicker picker) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(AskActivity.this);
+        builder
+                .setTitle(getString(R.string.home_ratingPicker_title))
+                .setMessage(getString(R.string.home_ratingPicker_message))
+                .setPositiveButton(getString(R.string.home_button_ok), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        setRating(picker.getValue());
+                    }
+                })
+                .setNegativeButton(getString(R.string.home_cancel_button),
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+        builder.setView(picker);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void setRating(float number) {
 
     }
 

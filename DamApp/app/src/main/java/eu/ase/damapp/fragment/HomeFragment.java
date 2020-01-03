@@ -28,8 +28,8 @@ public class HomeFragment extends Fragment {
     private List<Category> categories = new ArrayList<>();
     public static final String CATEGORY_KEY = "categoriesKey";
     private int selectedCategoryIndex;
-    private static final int MIN_RATING_PICKER = 0;
-    private static final int MAX_RATING_PICKER = 10;
+    public static final int MIN_RATING_PICKER = 0;
+    public static final int MAX_RATING_PICKER = 10;
     private CategoryAdapter categoryAdapter;
 
     public HomeFragment() {

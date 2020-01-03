@@ -32,6 +32,13 @@ public class Faq implements Parcelable {
     @ColumnInfo(name = "idUserFaq")
     public long idUserFaq;
 
+    @Ignore
+    public Faq(String question, String questionCategory, float applicationRating, long idUserFaq) {
+        this.question = question;
+        this.questionCategory = questionCategory;
+        this.applicationRating = applicationRating;
+        this.idUserFaq = idUserFaq;
+    }
 
     public Faq(long id, String question, String questionCategory, float applicationRating, long idUserFaq) {
         this.id = id;

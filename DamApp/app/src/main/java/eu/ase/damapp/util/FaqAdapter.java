@@ -47,7 +47,7 @@ public class FaqAdapter extends ArrayAdapter<Faq> {
 
     private void addName(View view, String question) {
         TextView textView = view.findViewById(R.id.lv_row_question);
-        if (question != null && question.trim().isEmpty()) {
+        if (question != null && !question.trim().isEmpty()) {
             textView.setText(question);
         } else {
             textView.setText("-");
