@@ -1,5 +1,6 @@
 package eu.ase.damapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import eu.ase.damapp.database.model.Faq;
+import eu.ase.damapp.database.service.FaqService;
 
 public class AskActivity extends AppCompatActivity {
     private EditText etQuestion;
@@ -59,6 +63,19 @@ public class AskActivity extends AppCompatActivity {
         }
 
         return true;
+    }
 
+    @SuppressLint("StaticFieldLeak")
+    private void insertCategoryIntoDB(Faq faq) {
+        new FaqService.Insert(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Faq result) {
+                if (result != null) {
+                    Toast.makeText(getApplicationContext(),
+                            R.string.ask_new_question_message,
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        }.execute(faq);
     }
 }

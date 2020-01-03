@@ -35,6 +35,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ListView
+        android:id="@+id/faq_lv"
         android:layout_width="409dp"
         android:layout_height="606dp"
         android:layout_marginStart="1dp"
