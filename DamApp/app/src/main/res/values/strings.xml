@@ -85,5 +85,10 @@
         <item>categoria D</item>
     </string-array>
     <string name="title_activity_maps">Map</string>
+    <string name="main_select_img_message">Selecteaza o imagine</string>
+    <string name="main_img_not_selected">Nu ai ales nicio imagine</string>
+    <string name="main_img_somethin_went_wrong">A intervenit ceva</string>
+    <string name="form_data_not_available">Data is not available</string>
+    <string name="form_btn_update_text">Update</string>
 
 </resources>

@@ -64,17 +64,25 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
-                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
-                image_view.setImageBitmap(selectedImage.createScaledBitmap
-                        (selectedImage, 120,120,false));
+                if (data != null) {
+                    Uri imageUri = data.getData();
+                    InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                    Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                    image_view.setImageBitmap(selectedImage.createScaledBitmap
+                            (selectedImage, 120, 120, false));
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            R.string.main_img_somethin_went_wrong,
+                            Toast.LENGTH_LONG).show();
+                }
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
-        }else {
-            Toast.makeText(getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(),
+                    R.string.main_img_not_selected,
+                    Toast.LENGTH_LONG).show();
         }
     }
 
@@ -110,9 +118,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCategories() {
-        insertCategoryIntoDB(new Category(R.drawable.ic_home_black_24dp, "Mecanica", (float) 5));
-        insertCategoryIntoDB(new Category(R.drawable.ic_person_black_24dp, "Semne de circulatie", (float) 3));
-        insertCategoryIntoDB(new Category(R.drawable.ic_help_outline_black_24dp, "Contraventii", (float) 2));
+        insertCategoryIntoDB(new Category(R.drawable.ic_home_black_24dp,
+                "Mecanica", (float) 5));
+        insertCategoryIntoDB(new Category(R.drawable.ic_person_black_24dp,
+                "Semne de circulatie", (float) 3));
+        insertCategoryIntoDB(new Category(R.drawable.ic_help_outline_black_24dp,
+                "Contraventii", (float) 2));
     }
 
     private void notifyCustomAdapter() {
@@ -188,11 +199,11 @@ public class MainActivity extends AppCompatActivity {
             image_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getApplicationContext(), "ura", Toast.LENGTH_LONG).show();
-                    Intent photoPickerIntent = new Intent();
-                    photoPickerIntent.setType("image/*");
-                    photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
-                    startActivityForResult(Intent.createChooser(photoPickerIntent, "Select Picture"), PICK_IMAGE);
+                    Intent pickerIntent = new Intent();
+                    pickerIntent.setType("image/*");
+                    pickerIntent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(pickerIntent,
+                            getString(R.string.main_select_img_message)), PICK_IMAGE);
                 }
             });
             navName.setText(user.getUsername());

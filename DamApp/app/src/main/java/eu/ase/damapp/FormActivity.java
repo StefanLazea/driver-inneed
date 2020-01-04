@@ -156,13 +156,16 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Form data = dataSnapshot.getValue(Form.class);
-                Log.i("firebase", data + "ura");
+
                 school.setText(data.getSchoolName());
+
                 form_tv_date_practical.setText(new SimpleDateFormat(
                         DATE_FORMAT, Locale.US).format(data.getDatePracticalExam()));
                 form_tv_date_theoretical.setText(new SimpleDateFormat(
                         DATE_FORMAT, Locale.US).format(data.getDateTheoreticalExam()));
-                spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter()).getPosition(data.getLicenceCategory()));
+                spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter())
+                        .getPosition(data.getLicenceCategory()));
+
                 if (data.isSchoolStarted()) {
                     checkBoxSchool.setChecked(true);
                 }
@@ -172,13 +175,13 @@ public class FormActivity extends AppCompatActivity {
                     rgSex.check(R.id.form_rb_feminin);
                 }
                 btnSend.setEnabled(true);
-                btnSend.setText("Update");
+                btnSend.setText(R.string.form_btn_update_text);
                 btnSend.setBackgroundColor(Color.GREEN);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("ReportActivity", "Data is not available");
+                Log.e("ReportActivity", getString(R.string.form_data_not_available));
 
             }
         });
