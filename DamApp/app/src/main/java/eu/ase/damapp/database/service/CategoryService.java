@@ -86,12 +86,7 @@ public class CategoryService {
 
             String name = strings[0];
 
-            Category category = categoryDao.getCategoryByName(name);
-
-            if (name != null) {
-                return category;
-            }
-            return null;
+            return categoryDao.getCategoryByName(name);
         }
     }
 }

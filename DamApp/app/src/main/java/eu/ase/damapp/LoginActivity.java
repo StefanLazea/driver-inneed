@@ -17,14 +17,11 @@ import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private final String pass = "test123123";
-    private final String user = "stefan";
     public static final String CURRENT_USER = "currentUser";
 
     private EditText editTextUsername;
     private EditText editTextPass;
     private Button buttonLogin;
-    private TextView tvWithoutAccount;
     private TextView tvRegister;
 
     @Override

@@ -157,26 +157,32 @@ public class FormActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Form data = dataSnapshot.getValue(Form.class);
 
-                school.setText(data.getSchoolName());
+                if (data != null) {
+                    school.setText(data.getSchoolName());
 
-                form_tv_date_practical.setText(new SimpleDateFormat(
-                        DATE_FORMAT, Locale.US).format(data.getDatePracticalExam()));
-                form_tv_date_theoretical.setText(new SimpleDateFormat(
-                        DATE_FORMAT, Locale.US).format(data.getDateTheoreticalExam()));
-                spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter())
-                        .getPosition(data.getLicenceCategory()));
+                    form_tv_date_practical.setText(new SimpleDateFormat(
+                            DATE_FORMAT, Locale.US).format(data.getDatePracticalExam()));
+                    form_tv_date_theoretical.setText(new SimpleDateFormat(
+                            DATE_FORMAT, Locale.US).format(data.getDateTheoreticalExam()));
+                    spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter())
+                            .getPosition(data.getLicenceCategory()));
 
-                if (data.isSchoolStarted()) {
-                    checkBoxSchool.setChecked(true);
-                }
-                if (data.getSex().equals("Masculin")) {
-                    rgSex.check(R.id.form_rb_masculin);
+                    if (data.isSchoolStarted()) {
+                        checkBoxSchool.setChecked(true);
+                    }
+                    if (data.getSex().equals("Masculin")) {
+                        rgSex.check(R.id.form_rb_masculin);
+                    } else {
+                        rgSex.check(R.id.form_rb_feminin);
+                    }
+                    btnSend.setEnabled(true);
+                    btnSend.setText(R.string.form_btn_update_text);
+                    btnSend.setBackgroundColor(Color.GREEN);
                 } else {
-                    rgSex.check(R.id.form_rb_feminin);
+                    Toast.makeText(getApplicationContext(),
+                            R.string.main_img_somethin_went_wrong,
+                            Toast.LENGTH_LONG).show();
                 }
-                btnSend.setEnabled(true);
-                btnSend.setText(R.string.form_btn_update_text);
-                btnSend.setBackgroundColor(Color.GREEN);
             }
 
             @Override
@@ -187,7 +193,7 @@ public class FormActivity extends AppCompatActivity {
         });
     }
 
-    public String upsert(final Form form) {
+    private String upsert(final Form form) {
         if (form == null) {
             return null;
         }

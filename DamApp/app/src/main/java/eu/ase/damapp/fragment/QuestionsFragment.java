@@ -65,9 +65,7 @@ public class QuestionsFragment extends Fragment {
             }
         }.execute(URL);
 
-
         return view;
-
     }
 
     private void initComponents(View view) {

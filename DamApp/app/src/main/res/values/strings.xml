@@ -64,7 +64,7 @@
     <string name="ask_new_question_message">Intrebare adaugata</string>
     <string name="faq_btn_save">Salveaza datele</string>
     <string name="faq_tv_rating_app_label">Rating-ul minim al aplicatie/categorie</string>
-    <string name="faq_tv_averrage_rating_label">Media rating-ului aplicatiei este de</string>
+    <string name="faq_tv_average_rating_label">Media rating-ului aplicatiei este de</string>
     <string name="faq_header_text_file">Raportarea facuta pe baza intrebarilor frecvente</string>
     <string name="faq_category_header_text_file">Aplicatia a primit rating-ul mediu la intrebarea cu categoria:</string>
     <string name="faq_file_saved_to">Saved to</string>
@@ -90,5 +90,9 @@
     <string name="main_img_somethin_went_wrong">A intervenit ceva</string>
     <string name="form_data_not_available">Data is not available</string>
     <string name="form_btn_update_text">Update</string>
+    <string name="quiz_no_answer_selected">Nu ati ales niciun raspuns</string>
+    <string name="quiz_correct_answer">Corect</string>
+    <string name="quiz_category">Categoria:</string>
+    <string name="ask_add_rating_label">Adauga rating pentru aplicatia Driver-inneed</string>
 
 </resources>

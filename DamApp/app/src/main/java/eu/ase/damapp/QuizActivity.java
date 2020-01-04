@@ -2,7 +2,6 @@ package eu.ase.damapp;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -63,7 +62,8 @@ public class QuizActivity extends AppCompatActivity {
         next = findViewById(R.id.quiz_btn_next);
 
         tvQuestion.setText(quizItem.getQuestion());
-        tvCategory.setText("Categoria: " + currentCategory);
+        String strCategory = getString(R.string.quiz_category) + currentCategory;
+        tvCategory.setText(strCategory);
 
         rbFirst.setText(quizItem.getAnswer().getFirstAnswer());
         rbSecond.setText(quizItem.getAnswer().getSecondAnswer());
@@ -83,9 +83,15 @@ public class QuizActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final RadioButton rb = findViewById(rgAnswers.getCheckedRadioButtonId());
-                String answer = rb.getText().toString();
-                if (answer.equals(quizItem.getAnswer().getCorrect())) {
-                    Toast.makeText(getApplicationContext(), "Hooray", Toast.LENGTH_LONG).show();
+                if (rb != null) {
+                    String answer = rb.getText().toString();
+                    if (answer.equals(quizItem.getAnswer().getCorrect())) {
+                        Toast.makeText(getApplicationContext(),
+                                R.string.quiz_correct_answer, Toast.LENGTH_LONG).show();
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(),
+                            R.string.quiz_no_answer_selected, Toast.LENGTH_LONG).show();
                 }
             }
         });

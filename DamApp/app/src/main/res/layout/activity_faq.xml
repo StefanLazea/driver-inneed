@@ -13,10 +13,11 @@
         android:layout_marginStart="29dp"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="10dp"
-        android:text="@string/faq_tv_averrage_rating_label"
+        android:text="@string/faq_tv_average_rating_label"
         app:layout_constraintBottom_toTopOf="@+id/faq_tv_category_label"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="29dp" />
 
     <TextView
         android:id="@+id/faq_tv_category_label"
@@ -28,7 +29,8 @@
         android:text="@string/faq_tv_rating_app_label"
         app:layout_constraintBottom_toTopOf="@+id/faq_lv"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating_label" />
+        app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating_label"
+        android:layout_marginLeft="29dp" />
 
     <ListView
         android:id="@+id/faq_lv"
@@ -52,7 +54,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="234dp" />
 
     <TextView
         android:id="@+id/faq_tv_rating"
@@ -64,7 +68,8 @@
         android:text="TextView"
         app:layout_constraintBottom_toTopOf="@+id/faq_tv_category"
         app:layout_constraintStart_toEndOf="@+id/faq_tv_rating_label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="38dp" />
 
     <TextView
         android:id="@+id/faq_tv_category"
@@ -74,6 +79,7 @@
         android:layout_marginTop="18dp"
         android:text="TextView"
         app:layout_constraintStart_toEndOf="@+id/faq_tv_category_label"
-        app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating" />
+        app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating"
+        android:layout_marginLeft="21dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

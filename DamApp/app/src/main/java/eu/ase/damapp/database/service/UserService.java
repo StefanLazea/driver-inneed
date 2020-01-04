@@ -25,12 +25,7 @@ public class UserService {
 
             String username = strings[0];
 
-            User user = userDao.findUserByUsername(username);
-
-            if (user != null) {
-                return user;
-            }
-            return null;
+            return userDao.findUserByUsername(username);
         }
     }
 
@@ -47,11 +42,7 @@ public class UserService {
 
             long id = longs[0];
 
-            User user = userDao.findUserById(id);
-            if (user != null) {
-                return user;
-            }
-            return null;
+            return userDao.findUserById(id);
         }
     }
 

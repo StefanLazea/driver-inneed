@@ -85,12 +85,7 @@ public class FaqService {
             }
 
             long id = results[0];
-            String response = faqDao.selectCategoryNameForUserIdAndBelowNumber(id);
-
-            if (response!=null) {
-                return response;
-            }
-            return null;
+            return faqDao.selectCategoryNameForUserIdAndBelowNumber(id);
         }
     }
 }

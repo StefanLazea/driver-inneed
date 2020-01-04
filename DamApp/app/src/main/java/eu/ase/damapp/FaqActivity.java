@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,13 +17,12 @@ import java.util.List;
 
 import eu.ase.damapp.database.model.Category;
 import eu.ase.damapp.database.model.Faq;
-import eu.ase.damapp.database.service.CategoryService;
 import eu.ase.damapp.database.service.FaqService;
 import eu.ase.damapp.util.CustomSharedPreferences;
 import eu.ase.damapp.util.FaqAdapter;
 
 public class FaqActivity extends AppCompatActivity {
-    public static final String FILE_NAME = "rapoarte.txt";
+    private static final String FILE_NAME = "rapoarte.txt";
     private static final String BREAK_LINE = "\n";
     private TextView tvRatingLabel;
     private TextView tvRating;
@@ -37,7 +35,6 @@ public class FaqActivity extends AppCompatActivity {
     private float numerOfEntries;
     private Category category;
 
-    //todo dummy data
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

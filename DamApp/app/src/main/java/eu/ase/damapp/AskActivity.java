@@ -23,7 +23,6 @@ public class AskActivity extends AppCompatActivity {
     private EditText etQuestion;
     private Spinner spinner;
     private Button btnSend;
-    private TextView tvRatingApp;
     private NumberPicker numberPicker;
     private Faq faq;
     private long userId;
@@ -46,8 +45,7 @@ public class AskActivity extends AppCompatActivity {
                         R.array.quiz_questions_categories,
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(categoriesAdapter);
-        numberPicker = (NumberPicker)findViewById(R.id.ask_np_rating);
-        tvRatingApp = findViewById(R.id.ask_tv_rating_app);
+        numberPicker = findViewById(R.id.ask_np_rating);
 
         numberPicker.setMinValue(HomeFragment.MIN_RATING_PICKER);
         numberPicker.setMaxValue(HomeFragment.MAX_RATING_PICKER);
@@ -57,7 +55,7 @@ public class AskActivity extends AppCompatActivity {
         numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                selectedRating =(float) newVal;
+                selectedRating = (float) newVal;
             }
         });
 
