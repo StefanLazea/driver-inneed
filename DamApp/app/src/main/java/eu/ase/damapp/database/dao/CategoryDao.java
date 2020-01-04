@@ -20,6 +20,11 @@ public interface CategoryDao {
     @Update
     int update(Category category);
 
+    @Query("SELECT count(*) FROM categories")
+    int countEntries();
+
     @Query("SELECT * FROM  categories WHERE name=:categoryName")
     Category getCategoryByName(String categoryName);
+
+
 }

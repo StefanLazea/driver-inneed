@@ -22,17 +22,15 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
+import eu.ase.damapp.database.model.Category;
+import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.database.service.CategoryService;
 import eu.ase.damapp.database.service.UserService;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
-import eu.ase.damapp.database.model.Category;
-import eu.ase.damapp.database.model.User;
 import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String START_QUIZ = "Starting the quiz";
-    public static final String START_QUIZ_KEY = "StartKey";
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
@@ -46,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         configNavigation();
         initComponents();
-        initCategories();
         getAllCategoriesFromDb();
+        getTotalEntriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
     }
@@ -201,6 +199,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }.execute(currentUser);
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void getTotalEntriesFromDb() {
+        new CategoryService.GetEntries(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Integer integer) {
+                if (integer == 0) {
+                    initCategories();
+                }
+            }
+        }.execute();
     }
 
 

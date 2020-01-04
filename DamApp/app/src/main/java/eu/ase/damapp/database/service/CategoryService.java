@@ -62,6 +62,17 @@ public class CategoryService {
         }
     }
 
+    public static class GetEntries extends AsyncTask<Void, Void, Integer> {
+        public GetEntries(Context context) {
+            categoryDao = DatabaseManager.getInstance(context).getCategoryDao();
+        }
+
+        @Override
+        protected Integer doInBackground(Void... voids) {
+            return categoryDao.countEntries();
+        }
+    }
+
     public static class GetCategoryByName extends AsyncTask<String, Void, Category> {
         public GetCategoryByName(Context context) {
             categoryDao = DatabaseManager.getInstance(context).getCategoryDao();

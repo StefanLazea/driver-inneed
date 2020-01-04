@@ -125,6 +125,8 @@ public class FormActivity extends AppCompatActivity {
                             btnSend.setEnabled(true);
                         }
                     }
+                }else{
+                    btnSend.setEnabled(true);
                 }
             }
 
@@ -162,7 +164,6 @@ public class FormActivity extends AppCompatActivity {
                 form_tv_date_theoretical.setText(new SimpleDateFormat(
                         DATE_FORMAT, Locale.US).format(data.getDateTheoreticalExam()));
                 spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter()).getPosition(data.getLicenceCategory()));
-                Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
                 if (data.isSchoolStarted()) {
                     checkBoxSchool.setChecked(true);
                 }
