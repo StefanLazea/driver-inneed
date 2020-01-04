@@ -51,7 +51,6 @@ public class FormActivity extends AppCompatActivity {
     private RadioGroup rgSex;
     private DatabaseReference mDatabase;
     private String userId;
-    private boolean hasEntries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,7 +124,7 @@ public class FormActivity extends AppCompatActivity {
                             btnSend.setEnabled(true);
                         }
                     }
-                }else{
+                } else {
                     btnSend.setEnabled(true);
                 }
             }
@@ -189,22 +188,24 @@ public class FormActivity extends AppCompatActivity {
         if (form == null) {
             return null;
         }
+
         if (form.getId() == null || form.getId().trim().isEmpty()) {
             form.setId(mDatabase.push().getKey());
         }
+
         mDatabase.child(form.getId()).setValue(form);
         mDatabase.child(form.getId()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Form temp = dataSnapshot.getValue(Form.class);
-                if (temp != null) {
-                    Log.i("FireController", "Form is updated " + temp.toString());
+                Form formLoaded = dataSnapshot.getValue(Form.class);
+                if (formLoaded != null) {
+                    Log.i(">> RTDB", "S-a facut update " + formLoaded.toString());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e("FirebaseController", "Coach is not saved");
+                Log.e(">> RTDB", "SomethingWentWrong");
             }
         });
         return form.getId();

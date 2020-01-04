@@ -47,7 +47,7 @@ public class AskActivity extends AppCompatActivity {
                         R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(categoriesAdapter);
         numberPicker = (NumberPicker)findViewById(R.id.ask_np_rating);
-        tvRatingApp = findViewById(R.id.ask_tv_ratingapp);
+        tvRatingApp = findViewById(R.id.ask_tv_rating_app);
 
         numberPicker.setMinValue(HomeFragment.MIN_RATING_PICKER);
         numberPicker.setMaxValue(HomeFragment.MAX_RATING_PICKER);

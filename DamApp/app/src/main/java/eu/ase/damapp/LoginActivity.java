@@ -80,7 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.login_input_username);
         editTextPass = findViewById(R.id.login_input_password);
         buttonLogin = findViewById(R.id.login_button);
-        tvWithoutAccount = findViewById(R.id.login_tv_without_account);
         tvRegister = findViewById(R.id.login_tv_register);
 
         buttonLogin.setOnClickListener(new View.OnClickListener() {
@@ -91,14 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
-        });
-
-        tvWithoutAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
         });
 
         tvRegister.setOnClickListener(new View.OnClickListener() {

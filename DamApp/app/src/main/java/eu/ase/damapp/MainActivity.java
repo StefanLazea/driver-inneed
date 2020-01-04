@@ -2,13 +2,18 @@ package eu.ase.damapp;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,6 +24,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,11 +38,13 @@ import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.util.CustomSharedPreferences;
 
 public class MainActivity extends AppCompatActivity {
+    private static final int PICK_IMAGE = 1;
     private NavigationView navigationView;
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
     private Fragment currentFragment;
     private User currentUser;
+    private ImageView image_view;
     private final ArrayList<Category> categories = new ArrayList<>();
 
     @Override
@@ -48,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         getTotalEntriesFromDb();
         openDefaultFragment(savedInstanceState);
         getCurrentUser();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                image_view.setImageBitmap(selectedImage.createScaledBitmap
+                        (selectedImage, 120,120,false));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+        }else {
+            Toast.makeText(getApplicationContext(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+        }
     }
 
     private void getCurrentUser() {
@@ -156,6 +184,17 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             View headerView = navigationView.getHeaderView(0);
             TextView navName = headerView.findViewById(R.id.nav_name);
+            image_view = headerView.findViewById(R.id.imageView);
+            image_view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "ura", Toast.LENGTH_LONG).show();
+                    Intent photoPickerIntent = new Intent();
+                    photoPickerIntent.setType("image/*");
+                    photoPickerIntent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(photoPickerIntent, "Select Picture"), PICK_IMAGE);
+                }
+            });
             navName.setText(user.getUsername());
         }
     }
