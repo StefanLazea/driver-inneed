@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import eu.ase.damapp.database.service.CategoryService;
+import eu.ase.damapp.database.service.UserService;
 import eu.ase.damapp.fragment.HomeFragment;
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.database.model.Category;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fabAskQuestion;
     private DrawerLayout drawerLayout;
     private Fragment currentFragment;
+    private User currentUser;
     private final ArrayList<Category> categories = new ArrayList<>();
 
     @Override
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void getCurrentUser() {
         if (getIntent().getExtras() != null) {
-            User currentUser = getIntent().getExtras().getParcelable(LoginActivity.CURRENT_USER);
+            currentUser = getIntent().getExtras().getParcelable(LoginActivity.CURRENT_USER);
             updateMenuDetails(currentUser);
         }
     }
@@ -125,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (menuItem.getItemId() == R.id.nav_delete_account) {
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             RegisterActivity.SHARED_PREF_NAME, -1);
+                    deleteUser();
                 } else if (menuItem.getItemId() == R.id.nav_maps) {
                     Intent intent = new Intent(getApplicationContext(), MapsActivity.class);
                     startActivity(intent);
@@ -184,6 +187,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }.execute();
+    }
+
+    @SuppressLint("StaticFieldLeak")
+    private void deleteUser() {
+        new UserService.Delete(getApplicationContext()) {
+            @Override
+            protected void onPostExecute(Integer result) {
+                if (result == 0) {
+                    CustomSharedPreferences.setIdToPreferences(getApplicationContext(), RegisterActivity.SHARED_PREF_NAME, -1);
+                    Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                    startActivity(intent);
+                }
+            }
+        }.execute(currentUser);
     }
 
 

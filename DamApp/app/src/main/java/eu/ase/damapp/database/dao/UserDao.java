@@ -2,6 +2,7 @@ package eu.ase.damapp.database.dao;
 
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
@@ -22,7 +23,7 @@ public interface UserDao {
     @Insert
     long insert(User user);
 
-    @Update
-    int update(User user);
+    @Delete
+    int delete(User user);
 
 }

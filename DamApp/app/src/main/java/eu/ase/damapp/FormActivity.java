@@ -112,28 +112,50 @@ public class FormActivity extends AppCompatActivity {
 
         rgSex = findViewById(R.id.form_rg_sex);
 
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (validateFormData()) {
                     Form formResult = createForm();
                     formResult.setId("details" + userId);
-                    mDatabase.child("details" + userId).setValue(formResult);
+                    upsert(formResult);
+//                    mDatabase.child("details" + userId).setValue(formResult);
 
-                    Toast.makeText(getApplicationContext(), "" + formResult, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "" + mDatabase.push().getKey(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
             }
         });
 
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //todo mai trebuie facut si in caz ca vine alt user
+                if(dataSnapshot.getValue() != null){
+                    getInfo();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void getInfo(){
         mDatabase.child("details" + userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Form data = dataSnapshot.getValue(Form.class);
-                Log.i("firebase",
-                        data + "ura");
+                Log.i("firebase", data + "ura");
                 school.setText(data.getSchoolName());
+
+
                 Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
             }
 
@@ -143,7 +165,31 @@ public class FormActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    public String upsert(final Form form) {
+        if (form == null) {
+            return null;
+        }
+        if (form.getId() == null || form.getId().trim().isEmpty()) {
+            form.setId(mDatabase.push().getKey());
+        }
+        mDatabase.child(form.getId()).setValue(form);
+        mDatabase.child(form.getId()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Form temp = dataSnapshot.getValue(Form.class);
+                if (temp != null) {
+                    Log.i("FireController", "Form is updated " + temp.toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseController", "Coach is not saved");
+            }
+        });
+        return form.getId();
     }
 
     private Form createForm() {

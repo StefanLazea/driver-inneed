@@ -79,4 +79,21 @@ public class UserService {
             return null;
         }
     }
+
+    public static class Delete extends
+            AsyncTask<User, Void, Integer> {
+        public Delete(Context context) {
+            userDao = DatabaseManager
+                    .getInstance(context)
+                    .getUserDao();
+        }
+
+        @Override
+        protected Integer doInBackground(User... users) {
+            if (users == null || users.length != 1) {
+                return -1;
+            }
+            return userDao.delete(users[0]);
+        }
+    }
 }

@@ -3,6 +3,7 @@ package eu.ase.damapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -105,7 +106,6 @@ public class RegisterActivity extends AppCompatActivity {
                             .show();
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             SHARED_PREF_NAME, result.getId());
-//                    setIdToPreferences(result.getId());
                 }
             }
         }.execute(user);
