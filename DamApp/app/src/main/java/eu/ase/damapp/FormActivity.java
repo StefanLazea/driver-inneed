@@ -133,8 +133,13 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //todo mai trebuie facut si in caz ca vine alt user
-                if(dataSnapshot.getValue() != null){
-                    getInfo();
+                if (dataSnapshot.getValue() != null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        Form form = data.getValue(Form.class);
+                        if (form.getId().equals("details" + userId)) {
+                            getInfo();
+                        }
+                    }
                 }
             }
 
@@ -147,7 +152,7 @@ public class FormActivity extends AppCompatActivity {
 
     }
 
-    private void getInfo(){
+    private void getInfo() {
         mDatabase.child("details" + userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
