@@ -116,7 +116,6 @@ public class FormActivity extends AppCompatActivity {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //todo mai trebuie facut si in caz ca vine alt user
                 if (dataSnapshot.getValue() != null) {
                     for (DataSnapshot data : dataSnapshot.getChildren()) {
                         Form form = data.getValue(Form.class);
@@ -134,7 +133,6 @@ public class FormActivity extends AppCompatActivity {
 
             }
         });
-
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,10 +166,11 @@ public class FormActivity extends AppCompatActivity {
                 if (data.isSchoolStarted()) {
                     checkBoxSchool.setChecked(true);
                 }
-                if (data.getSex() == "Masculin") {
+                if (data.getSex().equals("Masculin")) {
                     rgSex.check(R.id.form_rb_masculin);
+                } else {
+                    rgSex.check(R.id.form_rb_feminin);
                 }
-                rgSex.check(R.id.form_rb_feminin);
                 btnSend.setEnabled(true);
                 btnSend.setText("Update");
                 btnSend.setBackgroundColor(Color.GREEN);
@@ -244,6 +243,7 @@ public class FormActivity extends AppCompatActivity {
                     .show();
             return false;
         }
+
         return true;
     }
 
@@ -262,6 +262,4 @@ public class FormActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
