@@ -62,6 +62,7 @@ public class FormActivity extends AppCompatActivity {
                 .getIdFromPreferences(getApplicationContext(),
                         RegisterActivity.SHARED_PREF_NAME));
         initAttributes();
+        btnSend.setEnabled(false);
         initComponents();
 
     }
@@ -112,6 +113,28 @@ public class FormActivity extends AppCompatActivity {
 
         rgSex = findViewById(R.id.form_rg_sex);
 
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //todo mai trebuie facut si in caz ca vine alt user
+                if (dataSnapshot.getValue() != null) {
+                    for (DataSnapshot data : dataSnapshot.getChildren()) {
+                        Form form = data.getValue(Form.class);
+                        if (form.getId().equals("details" + userId)) {
+                            getInfo();
+                        } else {
+                            btnSend.setEnabled(true);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,28 +150,6 @@ public class FormActivity extends AppCompatActivity {
                 }
             }
         });
-
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //todo mai trebuie facut si in caz ca vine alt user
-                if (dataSnapshot.getValue() != null) {
-                    for (DataSnapshot data : dataSnapshot.getChildren()) {
-                        Form form = data.getValue(Form.class);
-                        if (form.getId().equals("details" + userId)) {
-                            getInfo();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
     }
 
     private void getInfo() {
@@ -171,7 +172,9 @@ public class FormActivity extends AppCompatActivity {
                     rgSex.check(R.id.form_rb_masculin);
                 }
                 rgSex.check(R.id.form_rb_feminin);
-
+                btnSend.setEnabled(true);
+                btnSend.setText("Update");
+                btnSend.setBackgroundColor(Color.GREEN);
             }
 
             @Override
