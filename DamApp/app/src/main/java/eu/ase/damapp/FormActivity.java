@@ -120,7 +120,6 @@ public class FormActivity extends AppCompatActivity {
                     Form formResult = createForm();
                     formResult.setId("details" + userId);
                     upsert(formResult);
-//                    mDatabase.child("details" + userId).setValue(formResult);
 
                     Toast.makeText(getApplicationContext(), "" + mDatabase.push().getKey(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormActivity.this, MainActivity.class);
@@ -159,9 +158,20 @@ public class FormActivity extends AppCompatActivity {
                 Form data = dataSnapshot.getValue(Form.class);
                 Log.i("firebase", data + "ura");
                 school.setText(data.getSchoolName());
-
-
+                form_tv_date_practical.setText(new SimpleDateFormat(
+                        DATE_FORMAT, Locale.US).format(data.getDatePracticalExam()));
+                form_tv_date_theoretical.setText(new SimpleDateFormat(
+                        DATE_FORMAT, Locale.US).format(data.getDateTheoreticalExam()));
+                spinner.setSelection(((ArrayAdapter<CharSequence>) spinner.getAdapter()).getPosition(data.getLicenceCategory()));
                 Toast.makeText(getApplicationContext(), data.toString(), Toast.LENGTH_LONG).show();
+                if (data.isSchoolStarted()) {
+                    checkBoxSchool.setChecked(true);
+                }
+                if (data.getSex() == "Masculin") {
+                    rgSex.check(R.id.form_rb_masculin);
+                }
+                rgSex.check(R.id.form_rb_feminin);
+
             }
 
             @Override
