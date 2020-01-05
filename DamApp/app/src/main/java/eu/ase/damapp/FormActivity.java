@@ -86,7 +86,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = month + "-" + dayOfMonth + "-" + year;
+                String date = dayOfMonth + "-" + month + "-" + year;
                 form_tv_date_theoretical.setText(date);
             }
         };
@@ -98,7 +98,7 @@ public class FormActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 month = month + 1;
-                String date = month + "-" + dayOfMonth + "-" + year;
+                String date = dayOfMonth + "-" + month + "-" + year;
                 form_tv_date_practical.setText(date);
             }
         };
@@ -142,8 +142,6 @@ public class FormActivity extends AppCompatActivity {
                     Form formResult = createForm();
                     formResult.setId("details" + userId);
                     upsert(formResult);
-
-                    Toast.makeText(getApplicationContext(), "" + mDatabase.push().getKey(), Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(FormActivity.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -254,6 +252,23 @@ public class FormActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG)
                     .show();
             return false;
+        }
+        if (checkBoxSchool.isChecked()) {
+            if (form_tv_date_practical.getText() != null && form_tv_date_practical.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), R.string.form_date_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
+            if (form_tv_date_theoretical.getText() != null && form_tv_date_theoretical.getText().toString().isEmpty()) {
+                Toast.makeText(getApplicationContext(), R.string.form_date_error, Toast.LENGTH_LONG).show();
+                return false;
+            }
+
+        } else {
+            form_tv_date_practical.setText(new SimpleDateFormat(
+                    DATE_FORMAT, Locale.US).format(new Date()));
+            form_tv_date_theoretical.setText(new SimpleDateFormat(
+                    DATE_FORMAT, Locale.US).format(new Date()));
+            return true;
         }
 
         return true;

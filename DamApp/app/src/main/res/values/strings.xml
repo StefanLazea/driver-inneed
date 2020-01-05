@@ -95,7 +95,7 @@
     <string name="quiz_category">Categoria:</string>
     <string name="ask_add_rating_label">Adauga rating pentru aplicatia Driver-inneed</string>
     <string name="quiz_tv_question_dummy">Lorem ipsum dolor sit amet, consectetur adipiscing</string>
-    <string name="quiz_btn_next">Next</string>
+    <string name="quiz_btn_check">Check</string>
     <string name="quiz_rb_dummy">RadioButtonDummy</string>
     <string name="quiz_tv_category">Categoria</string>
     <string name="faq_no_data">Nu exista date</string>
@@ -107,5 +107,6 @@
     <string name="quiz_incorrect">Nu este corect</string>
     <string name="faq_not_available">n/a</string>
     <string name="nav_see_map">See maps</string>
+    <string name="form_date_error">Data trebuie completata</string>
 
 </resources>
