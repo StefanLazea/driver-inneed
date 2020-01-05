@@ -32,7 +32,7 @@ public class FaqActivity extends AppCompatActivity {
     private Button btnSave;
     private long userId;
     private FaqAdapter faqAdapter;
-    private float numerOfEntries;
+    private float numberOfEntries;
     private Category category;
 
     @Override
@@ -130,7 +130,9 @@ public class FaqActivity extends AppCompatActivity {
                     faqs.addAll(results);
                     notifyInternal();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Nu exista date", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),
+                            R.string.faq_no_data,
+                            Toast.LENGTH_LONG).show();
                 }
             }
         }.execute();
@@ -142,7 +144,7 @@ public class FaqActivity extends AppCompatActivity {
             @Override
             protected void onPostExecute(Float result) {
                 if (result > 0) {
-                    float averageRating = result / numerOfEntries;
+                    float averageRating = result / numberOfEntries;
                     tvRating.setText(String.valueOf(averageRating));
                 }
             }
@@ -154,7 +156,7 @@ public class FaqActivity extends AppCompatActivity {
         new FaqService.GetNumberOfEntries(getApplicationContext()) {
             @Override
             protected void onPostExecute(Integer result) {
-                numerOfEntries = result;
+                numberOfEntries = result;
                 if (result > 0) {
                     initComponents();
                     getSumForAppRating();

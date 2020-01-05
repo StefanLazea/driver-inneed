@@ -8,7 +8,6 @@ import androidx.room.Query;
 
 import eu.ase.damapp.database.model.User;
 
-//nu face conexiune
 @Dao
 public interface UserDao {
     @Query("SELECT * FROM users WHERE id = :id")

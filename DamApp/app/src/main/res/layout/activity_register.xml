@@ -21,7 +21,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_tv_confirm" />
+        app:layout_constraintTop_toBottomOf="@+id/register_tv_confirm"
+        android:layout_marginLeft="161dp"
+        android:layout_marginRight="162dp" />
 
     <EditText
         android:id="@+id/register_tv_confirm"

@@ -16,7 +16,9 @@
         android:text="@string/questions_btn_mechanics"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="297dp" />
 
     <Button
         android:id="@+id/questions_btn_signs"
@@ -28,7 +30,9 @@
         android:text="@string/questions_btn_sign"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/questions_btn_mechanics"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="35dp"
+        android:layout_marginRight="175dp" />
 
     <Button
         android:id="@+id/questions_btn_tickets"
@@ -40,7 +44,9 @@
         android:text="@string/questions_btn_tickets"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/questions_btn_signs"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="43dp"
+        android:layout_marginRight="40dp" />
 
     <ListView
         android:id="@+id/lv_questions"

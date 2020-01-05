@@ -16,7 +16,7 @@
         android:layout_marginBottom="131dp"
         android:gravity="center_horizontal"
         android:textStyle="bold"
-        android:text="Ce se intampla daca te duci dreacu intr o sear"
+        android:text="@string/quiz_tv_question_dummy"
         app:layout_constraintBottom_toTopOf="@+id/quiz_rg_answers"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +29,13 @@
         android:layout_marginStart="276dp"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="80dp"
-        android:text="Next"
+        android:text="@string/quiz_btn_next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="276dp"
+        android:layout_marginRight="47dp" />
 
     <RadioGroup
         android:id="@+id/quiz_rg_answers"
@@ -48,31 +50,33 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.696">
+        app:layout_constraintVertical_bias="0.696"
+        android:layout_marginLeft="48dp"
+        android:layout_marginRight="335dp">
 
         <RadioButton
             android:id="@+id/quiz_rb_first"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/quiz_rb_dummy" />
 
         <RadioButton
             android:id="@+id/quiz_rb_second"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/quiz_rb_dummy" />
 
         <RadioButton
             android:id="@+id/quiz_rb_third"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/quiz_rb_dummy" />
 
         <RadioButton
             android:id="@+id/quiz_rb_fourth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="@string/quiz_rb_dummy" />
     </RadioGroup>
 
     <TextView
@@ -83,7 +87,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="168dp"
         android:layout_marginBottom="28dp"
-        android:text="Categoria"
+        android:text="@string/quiz_tv_category"
         app:layout_constraintBottom_toTopOf="@+id/quiz_tv_question"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

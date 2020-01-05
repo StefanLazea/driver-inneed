@@ -1,6 +1,7 @@
 package eu.ase.damapp;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -100,11 +101,13 @@ public class RegisterActivity extends AppCompatActivity {
             protected void onPostExecute(User result) {
                 if (result != null) {
                     Toast.makeText(getApplicationContext(),
-                            "Cont creat",
+                            R.string.registre_account_created,
                             Toast.LENGTH_LONG)
                             .show();
                     CustomSharedPreferences.setIdToPreferences(getApplicationContext(),
                             SHARED_PREF_NAME, result.getId());
+                    Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                    startActivity(intent);
                 }
             }
         }.execute(user);

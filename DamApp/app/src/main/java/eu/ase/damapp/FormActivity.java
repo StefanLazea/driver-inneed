@@ -208,13 +208,14 @@ public class FormActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Form formLoaded = dataSnapshot.getValue(Form.class);
                 if (formLoaded != null) {
-                    Log.i(">> RTDB", "S-a facut update " + formLoaded.toString());
+                    Log.i(getString(R.string.log_tag),
+                            getString(R.string.form_log_update_done) + formLoaded.toString());
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.e(">> RTDB", "SomethingWentWrong");
+                Log.e(getString(R.string.log_tag), getString(R.string.form_log_something_went_wrong));
             }
         });
         return form.getId();

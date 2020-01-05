@@ -65,7 +65,7 @@
         android:layout_marginStart="38dp"
         android:layout_marginTop="62dp"
         android:layout_marginBottom="18dp"
-        android:text="TextView"
+        android:text="@string/faq_not_available"
         app:layout_constraintBottom_toTopOf="@+id/faq_tv_category"
         app:layout_constraintStart_toEndOf="@+id/faq_tv_rating_label"
         app:layout_constraintTop_toTopOf="parent"
@@ -77,7 +77,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="21dp"
         android:layout_marginTop="18dp"
-        android:text="TextView"
+        android:text="@string/faq_not_available"
         app:layout_constraintStart_toEndOf="@+id/faq_tv_category_label"
         app:layout_constraintTop_toBottomOf="@+id/faq_tv_rating"
         android:layout_marginLeft="21dp" />

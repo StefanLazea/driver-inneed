@@ -1,5 +1,6 @@
 package eu.ase.damapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +12,13 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import eu.ase.damapp.fragment.QuestionsFragment;
 import eu.ase.damapp.network.Item;
 
 public class QuizActivity extends AppCompatActivity {
-
     private Item quizItem;
     private String currentCategory;
     private TextView tvQuestion;
@@ -26,6 +29,8 @@ public class QuizActivity extends AppCompatActivity {
     private RadioButton rbThrid;
     private RadioButton rbFourth;
     private Button next;
+    private List<Item> currentList = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +93,11 @@ public class QuizActivity extends AppCompatActivity {
                     if (answer.equals(quizItem.getAnswer().getCorrect())) {
                         Toast.makeText(getApplicationContext(),
                                 R.string.quiz_correct_answer, Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                R.string.quiz_incorrect,
+                                Toast.LENGTH_LONG).show();
                     }
                 } else {
                     Toast.makeText(getApplicationContext(),

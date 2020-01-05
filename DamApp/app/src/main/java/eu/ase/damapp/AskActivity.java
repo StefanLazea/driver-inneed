@@ -72,9 +72,6 @@ public class AskActivity extends AppCompatActivity {
                     String category = spinner.getSelectedItem().toString();
 
                     faq = new Faq(etQuestion.getText().toString(), category, selectedRating, userId);
-                    Toast.makeText(getApplicationContext(), String.valueOf(selectedRating
-                            ),
-                            Toast.LENGTH_LONG).show();
                     insertCategoryIntoDB(faq);
                     Intent intent = new Intent(getApplicationContext(), FaqActivity.class);
                     startActivity(intent);
@@ -86,6 +83,12 @@ public class AskActivity extends AppCompatActivity {
     private boolean validate() {
         if (etQuestion.getText().toString().trim().isEmpty() || etQuestion == null) {
             Toast.makeText(getApplicationContext(), R.string.ask_etQuestion_error,
+                    Toast.LENGTH_LONG).show();
+            return false;
+        }
+
+        if (selectedRating == 0) {
+            Toast.makeText(getApplicationContext(), R.string.ask_no_rating,
                     Toast.LENGTH_LONG).show();
             return false;
         }

@@ -53,7 +53,7 @@ public class QuestionAdapter extends ArrayAdapter<Item> {
         if (question != null && !question.trim().isEmpty()) {
             textView.setText(question);
         } else {
-            textView.setText("Something went wrong");
+            textView.setText(String.valueOf(R.string.main_img_somethin_went_wrong));
         }
     }
 }
